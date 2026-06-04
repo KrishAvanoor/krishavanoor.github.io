@@ -3,30 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy Briefs & Strategic Roadmaps | Krish Avanoor</title>
-    <meta name="description" content="Sovereign policy proposals, state restructuring briefs, and national development roadmaps for India and Kerala.">
+    <title>Krish Avanoor | Policy Briefs & Strategic Roadmaps</title>
+    <meta name="description" content="Personal homepage of Krish Avanoor. Sovereign policy proposals, state restructuring briefs, and national development roadmaps for India and Kerala.">
     <!-- Trigger build run -->
-    
-    <!-- Premium Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --bg: #070a13;
-            --surface: rgba(14, 20, 38, 0.6);
-            --surface-hover: rgba(22, 31, 59, 0.8);
-            --border: rgba(255, 255, 255, 0.06);
-            --gold: #ca8a04;
-            --gold-light: #fef3c7;
-            --emerald: #10b981;
-            --indigo: #6366f1;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -34,254 +15,126 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 0% 50%, rgba(202, 138, 4, 0.04) 0%, transparent 40%);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background-color: #0b0b0b;
+            color: #d1d1d1;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            padding: 60px 20px;
             -webkit-font-smoothing: antialiased;
         }
 
-        .background-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        header {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            margin: 80px auto 40px;
-            padding: 0 24px;
-            text-align: center;
-        }
-
-        .avatar-label {
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-            color: #ffffff;
-        }
-
-        h1 span {
-            font-style: italic;
-            font-weight: 600;
-            color: var(--gold-light);
-        }
-
-        .subtitle {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: clamp(16px, 2.2vw, 20px);
-            color: var(--text-muted);
-            line-height: 1.6;
+        .container {
             max-width: 680px;
             margin: 0 auto;
         }
 
-        main {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 24px 80px;
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 24px;
         }
 
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: var(--surface);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 48px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: transparent;
-            transition: var(--transition);
-        }
-
-        .card-kerala::before {
-            background: linear-gradient(90deg, var(--emerald), var(--gold));
-        }
-
-        .card-bharat::before {
-            background: linear-gradient(90deg, var(--indigo), var(--gold));
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            background-color: var(--surface-hover);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-        }
-
-        .card-kerala:hover {
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-
-        .card-bharat:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .card-header {
-            margin-bottom: 32px;
-        }
-
-        .tag {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 6px 12px;
-            border-radius: 100px;
-            display: inline-block;
-            margin-bottom: 24px;
-        }
-
-        .tag-kerala {
-            background: rgba(16, 185, 129, 0.1);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.15);
-        }
-
-        .tag-bharat {
-            background: rgba(99, 102, 241, 0.1);
-            color: #a5b4fc;
-            border: 1px solid rgba(99, 102, 241, 0.15);
-        }
-
-        .card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(24px, 3.5vw, 32px);
-            font-weight: 700;
-            line-height: 1.25;
-            margin-bottom: 8px;
+        h1 {
             color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
         }
 
-        .card-subtitle {
-            font-size: 15px;
+        .subtitle {
+            color: #888888;
             font-style: italic;
-            color: var(--gold);
-            margin-bottom: 18px;
-            font-weight: 400;
+            font-size: 16px;
         }
 
-        .card p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-muted);
+        main {
+            margin-bottom: 60px;
         }
 
-        .card-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #555;
+            transition: text-decoration-color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration-color: #ffffff;
+        }
+
+        section {
             margin-top: 40px;
         }
 
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px 24px;
-            font-size: 14px;
+        h2 {
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 20px;
             font-weight: 600;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 8px;
         }
 
-        .btn-primary {
-            background-color: #ffffff;
-            color: #070a13;
+        ul.briefs-list {
+            list-style-type: none;
         }
 
-        .btn-primary:hover {
-            background-color: var(--gold-light);
-            transform: scale(1.02);
+        ul.briefs-list > li {
+            margin-bottom: 32px;
         }
 
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
-            border: 1px solid var(--border);
+        .brief-title {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
         }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+        .brief-meta {
+            font-size: 13px;
+            color: #888888;
+            margin-bottom: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        .btn-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
+        .brief-desc {
+            margin-bottom: 12px;
+            color: #b0b0b0;
+        }
+
+        .brief-links {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .brief-links a {
+            font-weight: 500;
         }
 
         footer {
-            position: relative;
-            z-index: 1;
-            padding: 40px 24px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
+            border-top: 1px solid #222;
+            padding-top: 24px;
+            color: #666666;
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         footer a {
-            color: var(--gold);
+            color: #888888;
             text-decoration: none;
         }
 
@@ -291,60 +144,46 @@
     </style>
 </head>
 <body>
-    <div class="background-grid"></div>
+    <div class="container">
+        <header>
+            <h1>Krish Avanoor</h1>
+            <div class="subtitle">Policy briefs & strategic developmental roadmaps</div>
+        </header>
 
-    <header>
-        <span class="avatar-label">Policy Portfolios</span>
-        <h1>Krish Avanoor <span>Policy Briefs</span></h1>
-        <p class="subtitle">Sovereign restructuring blueprints and strategic development roadmaps for review and analysis.</p>
-    </header>
+        <main>
+            <p>I compile objective, data-driven developmental proposals and restructuring strategies for public review and policymaker analysis.</p>
+            <p>These policy briefs span state-level financial restructuring and national-level 10-year development blueprints, focusing on transition from high-interest debt to asset-backed sovereign capital pools, and optimizing public infrastructure through regulated partnership models.</p>
 
-    <main>
-        <div class="portal-grid">
-            <!-- Kerala Proposal Card -->
-            <div class="card card-kerala">
-                <div class="card-header">
-                    <span class="tag tag-kerala">State Policy Brief</span>
-                    <h2>Navakeralam Reimagined</h2>
-                    <div class="card-subtitle">A Sovereign Development Vision for Kerala</div>
-                    <p>An objective strategy for restructuring KIIFB, creating the Sovereign Multi-Asset Fund (SMAF), modernizing public sector undertakings, and shifting public transit and healthcare to efficient, private-partnered OpEx models.</p>
-                </div>
-                <div class="card-actions">
-                    <a href="./nava-keralam/" class="btn btn-primary">
-                        Read Online Brief
-                        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
-                    </a>
-                    <a href="./nava-keralam/Navakeralam_Reimagined_Policy_Vision.pdf" class="btn btn-secondary" target="_blank">
-                        Download PDF Version
-                        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                    </a>
-                </div>
-            </div>
+            <section>
+                <h2>Policy Portfolios</h2>
+                <ul class="briefs-list">
+                    <li>
+                        <div class="brief-title">
+                            <a href="./nava-keralam/">Navakeralam Reimagined</a>
+                        </div>
+                        <div class="brief-meta">State Policy Brief &mdash; Restructuring Proposal</div>
+                        <p class="brief-desc">An objective blueprint proposing KIIFB debt restructuring, the creation of a Sovereign Multi-Asset Fund (SMAF), optimization of loss-making public sector enterprises, and the transition of state utilities to regulated OpEx models.</p>
+                        <div class="brief-links">
+                            Read: <a href="./nava-keralam/">Online HTML version</a> &nbsp;·&nbsp; <a href="./nava-keralam/Navakeralam_Reimagined_Policy_Vision.pdf" target="_blank">PDF version</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="brief-title">
+                            <a href="./bharat/">Sarvodaya Bharat</a>
+                        </div>
+                        <div class="brief-meta">National Policy Brief &mdash; 10-Year Roadmap (2026–2036)</div>
+                        <p class="brief-desc">A comprehensive 15-pillar national developmental proposal covering maritime connectivity, logistics optimization, infrastructure finance reforms, national healthcare systems, and high-efficiency digital public grids.</p>
+                        <div class="brief-links">
+                            Read: <a href="./bharat/">Online HTML version</a> &nbsp;·&nbsp; <a href="./bharat/sarvodaya_bharat_v1.21.pdf" target="_blank">PDF version</a>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
 
-            <!-- Bharat Proposal Card -->
-            <div class="card card-bharat">
-                <div class="card-header">
-                    <span class="tag tag-bharat">National Policy Brief</span>
-                    <h2>Sarvodaya Bharat</h2>
-                    <div class="card-subtitle">A 10-Year Strategic Development Roadmap (2026–2036)</div>
-                    <p>A comprehensive 15-pillar national developmental proposal covering maritime connectivity, logistics optimization, infrastructure finance reforms, health systems, and high-efficiency digital public grids.</p>
-                </div>
-                <div class="card-actions">
-                    <a href="./bharat/" class="btn btn-primary">
-                        Read Online Brief
-                        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
-                    </a>
-                    <a href="./bharat/sarvodaya_bharat_v1.21.pdf" class="btn btn-secondary" target="_blank">
-                        Download PDF Version
-                        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Krish Avanoor. All rights reserved. &nbsp;·&nbsp; Hosted on <a href="https://github.com/krishavanoor/krishavanoor.github.io" target="_blank">GitHub Pages</a></p>
-    </footer>
+        <footer>
+            &copy; 2026 Krish Avanoor. All rights reserved. &nbsp;·&nbsp; Hosted on <a href="https://github.com/krishavanoor/krishavanoor.github.io" target="_blank">GitHub Pages</a>
+        </footer>
+    </div>
 </body>
 </html>
