@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTC — Institutional Design Appendix v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #1E3A52;
+  --gold: #C8960C;
+  --gold-light: #E8B824;
+  --saffron: #E8520A;
+  --green: #1B6B3A;
+  --green-light: #2D9B56;
+  --ash: #5A6370;
+  --silver: #E8EDF2;
+  --cream: #FAFAF7;
+  --warm: #F5F4F0;
+  --ink: #1A1A2E;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Source Serif 4', Georgia, serif; background: var(--cream); color: var(--ink); line-height: 1.8; font-size: 16px; }
+
+/* ── COVER ── */
+.cover {
+  background: var(--navy);
+  min-height: 280px;
+  padding: 70px 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 100% 0%, rgba(200,150,12,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 0% 100%, rgba(27,107,58,0.06) 0%, transparent 50%);
+}
+.cover-inner { position: relative; z-index: 1; max-width: 800px; }
+.cover-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.cover h1 em { color: var(--gold); font-style: italic; }
+.cover p {
+  font-size: 15px;
+  color: #7A8A9A;
+  font-style: italic;
+  margin: 0;
+}
+.cover-rule {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--green-light));
+  margin: 20px 0;
+}
+
+/* ── LAYOUT ── */
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+/* ── CHAPTER HEADERS ── */
+.chapter {
+  padding: 64px 0 0;
+  border-top: 1px solid var(--silver);
+  margin-top: 56px;
+}
+.chapter:first-child { border-top: none; margin-top: 0; }
+.ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.ch-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.ch-sub {
+  font-size: 14px;
+  color: var(--ash);
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 32px 0 10px;
+}
+p { margin-bottom: 16px; font-size: 15px; }
+
+/* ── CALLOUTS ── */
+.pull {
+  background: #FFF8EC;
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 24px 0;
+  font-size: 14px;
+  font-style: italic;
+  color: #3A3020;
+}
+.callout {
+  background: #F0F5FF;
+  border-left: 3px solid #1D4ED8;
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 24px 0;
+}
+.callout h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1D4ED8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 8px;
+}
+.callout p { font-size: 14px; margin-bottom: 8px; }
+.callout p:last-child { margin-bottom: 0; }
+
+.warn {
+  background: #FFF3E8;
+  border-left: 3px solid var(--saffron);
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 24px 0;
+}
+.warn h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 8px;
+}
+.warn p { font-size: 14px; margin-bottom: 8px; }
+.warn p:last-child { margin-bottom: 0; }
+
+.verdict {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 26px 30px;
+  margin: 28px 0;
+}
+.verdict h3 { color: var(--gold); font-size: 17px; margin: 0 0 14px; }
+.verdict p { color: #9BA8B5; font-size: 14px; margin-bottom: 10px; }
+.verdict p:last-child { margin-bottom: 0; }
+.verdict strong { color: #FFFFFF; }
+
+/* ── GRIDS ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 18px 20px;
+  border-top: 3px solid var(--green);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.card.gold-top { border-top-color: var(--gold); }
+.card.blue-top { border-top-color: #1D4ED8; }
+.card.red-top { border-top-color: #BE123C; }
+.card.teal-top { border-top-color: #0E7490; }
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 5px;
+}
+.card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.card p { font-size: 13px; color: #3A3A4A; line-height: 1.6; margin: 0; }
+.card .insight {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  margin-top: 10px;
+}
+.card.gold-top .insight { color: #92400E; }
+.card.blue-top .insight { color: #1D4ED8; }
+.card.red-top .insight { color: #BE123C; }
+
+/* ── UMBRELLA DIAGRAM ── */
+.umbrella {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin: 24px 0;
+}
+.umbrella-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.apex-box {
+  background: rgba(200,150,12,0.12);
+  border: 1px solid rgba(200,150,12,0.3);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.apex-box .a-tag { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+.apex-box h4 { font-size: 15px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
+.apex-box p { font-size: 12px; color: #9BA8B5; line-height: 1.5; margin: 0; }
+.sub-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.sub-box {
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  padding: 10px 12px;
+  border-left: 2px solid;
+}
+.sub-box .s-tag { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; margin-bottom: 3px; }
+.sub-box h5 { font-size: 13px; font-weight: 700; color: #FFFFFF; margin-bottom: 3px; }
+.sub-box p { font-size: 11px; color: #7A8A9A; line-height: 1.5; margin: 0; }
+.note-sm { font-size: 11px; color: #5A6370; margin-top: 12px; font-style: italic; }
+
+/* ── TABLES ── */
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+thead th {
+  background: var(--navy);
+  color: #FFFFFF;
+  padding: 9px 12px;
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--silver);
+  vertical-align: top;
+  line-height: 1.55;
+}
+tbody tr:nth-child(even) td { background: var(--warm); }
+.section-row td {
+  background: var(--warm) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--silver);
+}
+
+/* ── TAGS ── */
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  margin: 2px 1px;
+  white-space: nowrap;
+}
+.p-policy { background: #DBEAFE; color: #1E3A8A; }
+.p-blueprint { background: #FEF3C7; color: #92400E; }
+.p-execute { background: #D1FAE5; color: #065F46; }
+.p-delegate { background: #E0E7FF; color: #3730A3; }
+.p-fund { background: #FCE7F3; color: #9D174D; }
+.p-monitor { background: #FEE2E2; color: #991B1B; }
+.p-partner { background: #F3F4F6; color: #374151; }
+.p-catalyst { background: #FFF7ED; color: #C2410C; }
+.p-convene { background: #F0FDF4; color: #166534; }
+.tag-r { display: inline-block; background: #D1FAE5; color: #065F46; font-size: 11px; padding: 2px 7px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.tag-a { display: inline-block; background: #FEE2E2; color: #991B1B; font-size: 11px; padding: 2px 7px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.tag-c { display: inline-block; background: #FEF3C7; color: #92400E; font-size: 11px; padding: 2px 7px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.tag-i { display: inline-block; background: #F3F4F6; color: #374151; font-size: 11px; padding: 2px 7px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+/* ── LAYER BOXES ── */
+.layer { background: var(--warm); border-radius: 8px; padding: 14px 18px; margin: 10px 0; border-left: 3px solid var(--green); }
+.layer.gold { border-left-color: var(--gold); }
+.layer.blue { border-left-color: #1D4ED8; }
+.layer.red { border-left-color: #BE123C; }
+.layer h5 { font-size: 12px; font-weight: 700; color: var(--navy); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.layer p { font-size: 13.5px; margin: 0; color: #3A3A4A; }
+
+/* ── FINANCIAL ── */
+.fin-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 20px 0; }
+.fin-box { background: #FFFFFF; border-radius: 8px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-align: center; }
+.fin-box .yr { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ash); margin-bottom: 6px; }
+.fin-box .amt { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); }
+.fin-box .lbl { font-size: 12px; color: var(--ash); margin-top: 4px; }
+
+/* ── STAFF TABLE HEADER ── */
+.staff-hdr { background: #F0F5FF; font-weight: 700; color: #1D4ED8; }
+
+/* ── FOOTER ── */
+.footer { padding: 40px 40px; text-align: center; margin-top: 60px; border-top: 1px solid var(--silver); }
+.footer p { font-size: 12px; color: var(--ash); font-style: italic; }
+
+@media (max-width: 640px) {
+  .cover { padding: 50px 24px 40px; }
+  .cover h1 { font-size: 28px; }
+  .wrap { padding: 0 20px; }
+  .two-col, .sub-grid, .fin-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">Sarvodaya Bharat 2026–2036 — Institutional Design Appendix v3.1</div>
+    <h1>The NTC Architecture<br><em>How It Is Built to Last</em></h1>
+    <div class="cover-rule"></div>
+    <p>Constitutional legitimacy · Governance design · Umbrella structure · Task register · RACI · Financing · Organisation · Alternative models · Open questions</p>
+    <div style="margin-top:32px; padding:20px 28px; background:rgba(255,255,255,0.07); border-radius:8px; border:1px solid rgba(255,255,255,0.15); max-width:640px; margin-left:auto; margin-right:auto;">
+      <p style="font-size:13px; color:rgba(255,255,255,0.75); line-height:1.8; margin:0; text-align:center;">
+        This is the companion technical appendix to the <strong style="color:#FFFFFF;">Sarvodaya Bharat Vision Document</strong>. The vision document presents the <em>what</em> and the <em>why</em>. This appendix presents the <em>how</em> — the full institutional architecture, governance design, financial model, and alternative structures for the National Transformation Cooperative. It is a working document, intended to support dialogue between NTC's founding coalition and government.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- PREAMBLE -->
+<div class="chapter" style="border-top:none; margin-top:0; padding-top:56px; background:var(--navy-pastel);">
+  <div class="ch-num">How to Use This Appendix</div>
+  <div class="ch-title">The Recommended Model and Its Alternatives</div>
+  <div class="ch-sub">The vision document recommends one model. This appendix provides the full technical depth behind that recommendation — and documents the alternatives honestly for every contingency.</div>
+
+  <div class="two-col">
+    <div class="card" style="border-top-color:#1B6B3A;">
+      <div class="card-label" style="color:#1B6B3A;">The Recommended Path — Sections I to XI</div>
+      <h4>NTC as a Parliamentary Statutory Body</h4>
+      <p>The Sarvodaya Bharat vision document's recommended model is for NTC to be constituted by an Act of Parliament — a statutory body with legally binding corporate membership obligations, mandatory CAG audit, annual Parliamentary reporting, and an independent board from which sitting MPs and MLAs are explicitly excluded under provisions mirroring NaBFID Act 2021 Section 6(3).</p>
+      <p>Engagement with government and the founding corporate coalition begins in 2026. NTC India Foundation (registered as a Section 8 not-for-profit company) begins programme work immediately while the Act progresses through Parliament. Upon passage, the Foundation's corpus, sub-bodies, and staff transfer directly into the statutory NTC. No time is lost; no work is duplicated.</p>
+    </div>
+    <div class="card" style="border-top-color:#C8960C;">
+      <div class="card-label" style="color:#C8960C;">Alternative Paths — Sections XII and XIII</div>
+      <h4>Three Contingency Structures</h4>
+      <p>Sections XII and XIII document three alternative institutional models for the scenario where the Parliamentary route takes longer than expected, is shaped differently through legislative process, or where a government-led parallel track is preferred. These are not hedges against the recommended model — they are contingency architectures that ensure the transformation agenda is never held hostage to a single legal pathway.</p>
+      <p>Every alternative uses the same 67-task register, the same RACI logic, and the same sub-body structure from Sections VII and VIII. Only the legal vehicle and accountability mechanisms change. All fifteen pillars are fully executable under all models.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; overflow-x:auto;">
+    <table>
+      <thead><tr><th>Section</th><th>What It Contains</th><th>Primary Use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>I–II</strong></td><td>The two constitutional criticisms; why Indian law already permits NTC's design; 100+ precedent statutory bodies</td><td>Answering legal objections; briefing counsel</td></tr>
+        <tr><td><strong>III</strong></td><td>Six global governance models NTC draws from (NDDB/Amul, Temasek, Norway GPFG, SEBI, NaBFID, UK Charity Commission)</td><td>Explaining design choices to institutional audiences</td></tr>
+        <tr><td><strong>IV</strong></td><td>Four-layer constitutional architecture — Parliamentary Act, accountability, board composition, National Advisory Council</td><td>Drafting the NTC Bill; briefing Parliamentary counsel</td></tr>
+        <tr><td><strong>V</strong></td><td>Four design principles derived from institutional failures — independent revenue, no political chairmanship, transparency by architecture, unattackable achievements</td><td>Internal governance decisions; board induction</td></tr>
+        <tr><td><strong>VI</strong></td><td>Umbrella architecture — NTC Apex and eleven sub-bodies; precedents; five-year sunset reviews</td><td>Organisational setup; sub-body CEO recruitment briefs</td></tr>
+        <tr><td><strong>VII</strong></td><td>67-task register across all fifteen pillars, each tagged with NTC's role (execute, fund, monitor, partner, convene, blueprint, catalyst) and mapped against ministry overlaps</td><td>Programme planning; ministry engagement; annual work plans</td></tr>
+        <tr><td><strong>VIII</strong></td><td>RACI matrix across every task category — seven stakeholders: NTC Apex, sub-bodies, central ministries, state governments, corporate members, Parliament/CAG, and citizens</td><td>MoU drafting; ministry coordination agreements; accountability frameworks</td></tr>
+        <tr><td><strong>IX</strong></td><td>Updated financial model v1.21: ₹5 lakh Cr founding corpus, 12% CAGR, 10% bond issuance at 5% (negotiable to 2-2.5% post Year 5), Phase 1 ₹3.78 lakh Cr deployable (75%); five government financing instruments; bond discipline rule</td><td>Investor briefings; corporate member engagement; bond issuance planning</td></tr>
+        <tr><td><strong>X</strong></td><td>Three workforce categories (750 permanent staff / 27,000 corporate secondees / execution contractors); staffing plan; compensation bands; post-execution wind-down</td><td>HR policy design; CEO brief; Parliamentary report disclosures</td></tr>
+        <tr><td><strong>XI</strong></td><td>Six open questions requiring resolution before NTC is constituted — railway assets, state subjects, land acquisition, hostile government resilience, sub-body proliferation, ministry non-cooperation</td><td>Government dialogue agenda; legal and policy working groups</td></tr>
+        <tr><td><strong>XII</strong></td><td>Three alternative models: Section 8 company (B1), cooperative FPO federation (B2/B3), state-level confederation — each with modified task register and RACI</td><td>Contingency planning; state government engagement; Foundation operating period</td></tr>
+        <tr><td><strong>XIII</strong></td><td>Government-led hybrid (B4): NITI Aayog as apex, line ministries as executors, Independent Digital Audit Authority, REIT/InvIT financing stack (₹2.5–4.8 lakh crore potential)</td><td>Government dialogue; parallel track planning; scenario where B4 runs alongside statutory NTC</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- I. THE TWO QUESTIONS                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter" style="border-top:none; margin-top:0; padding-top:56px;">
+  <div class="ch-num">Section I</div>
+  <div class="ch-title">The Two Criticisms — Stated Precisely</div>
+  <div class="ch-sub">Before answering criticism, state it with precision.</div>
+
+  <div class="two-col">
+    <div class="card red-top">
+      <div class="card-label">Criticism A</div>
+      <h4>"NTC is a non-constitutional body. It cannot hold power above Parliament."</h4>
+      <p>The Constitution vests legislative authority in Parliament. Any body not mentioned in it — especially one funded by private capital — cannot claim authority over elected representatives. NTC could become a parallel government answerable to nobody.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-label">Criticism B</div>
+      <h4>"You cannot exclude elected representatives and bureaucrats entirely."</h4>
+      <p>Elected officials are the constitutional expression of democratic will. Excluding them from a body that influences national transformation is anti-democratic. Without their participation, NTC cannot secure legislation, administrative cooperation, or political buy-in.</p>
+    </div>
+  </div>
+
+  <div class="pull">These are legitimate questions, not attacks to be deflected. The answer to Criticism A is precision about what NTC actually is. The answer to Criticism B is a structured inclusion mechanism that gives elected representatives genuine voice without operational authority.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- II. WHAT INDIAN LAW ALREADY ALLOWS                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section II</div>
+  <div class="ch-title">What Indian Law Already Allows</div>
+  <div class="ch-sub">The constitutional objection confuses two distinct categories of institution.</div>
+
+  <p>India has more than 100 statutory bodies exercising significant authority over public life — none of them named in the Constitution. The objection confuses two different things: <strong>constitutional bodies</strong> (named in the Constitution — Election Commission, UPSC, CAG, Finance Commission) and <strong>statutory bodies</strong> (created by an Act of Parliament — equally legal, equally legitimate).</p>
+
+  <table>
+    <thead>
+      <tr><th>Body</th><th>Created By</th><th>Parliamentary Accountability</th><th>Powers Exercised</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>SEBI</strong></td><td>SEBI Act 1992</td><td>Annual report; Standing Committee; CAG audit</td><td>Quasi-legislative, quasi-judicial, quasi-executive — can investigate, impose penalties, bar companies</td></tr>
+      <tr><td><strong>RBI</strong></td><td>RBI Act 1934</td><td>Annual report; Finance Ministry; Standing Committee</td><td>Sets monetary policy, regulates all banks, issues currency — fundamental economic sovereignty</td></tr>
+      <tr><td><strong>TRAI</strong></td><td>TRAI Act 1997</td><td>Annual report; Telecom Ministry; appellate review</td><td>Sets tariffs, issues licences, regulates one of India's largest industries</td></tr>
+      <tr><td><strong>NDDB</strong></td><td>NDDB Act 1987</td><td>Ministry oversight; Parliament; annual audit</td><td>Runs India's dairy cooperative system — 1.8 lakh cooperatives, 16 million farmers</td></tr>
+      <tr><td><strong>NaBFID</strong></td><td>NaBFID Act 2021</td><td>RBI regulation; CAG audit; Parliament</td><td>Long-term infrastructure financing; Section 6(3) explicitly bars sitting MPs and MLAs from its board</td></tr>
+      <tr><td><strong>Planning Commission</strong></td><td>Cabinet Resolution 1950</td><td>PM chairs; NDC oversight</td><td>Allocated every rupee of development expenditure across all states and ministries for 65 years</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>The Decisive Precedent</h4>
+    <p>The Planning Commission — which for 65 years decided how every rupee of India's Plan expenditure was allocated across all states and ministries — was created by a Cabinet resolution, not an Act of Parliament and not a constitutional amendment. It was never challenged as unconstitutional because it operated within the system: it advised and allocated, it did not legislate or adjudicate.</p>
+    <p>NTC, constituted by an Act of Parliament, has stronger legal grounding than the Planning Commission ever did. Parliament is fully supreme: NTC exists because Parliament chose to create it, with powers defined and limited by Parliament, subject to amendment or dissolution at any time.</p>
+  </div>
+
+  <h3>What NTC Is and Is Not</h3>
+
+  <div class="layer">
+    <h5>What NTC Is</h5>
+    <p>A statutory body that manages a privately-funded corpus for national transformation programmes. It executes programmes, partners with governments, measures outcomes, and publishes results publicly. It has no legislative power. It cannot pass laws. It cannot override government decisions. It cannot command any government official. It is a doing institution, not a ruling one.</p>
+  </div>
+  <div class="layer gold">
+    <h5>What NTC Is Not</h5>
+    <p>NTC is not a government. It is not a legislature. It is not a regulator with penal powers. It does not set policy — it implements what governments have already decided, or what the private sector has agreed to fund. Describing NTC as a "parallel government" mistakes its nature entirely.</p>
+  </div>
+  <div class="layer blue">
+    <h5>The Correct Framing</h5>
+    <p>NTC is to India's national transformation what NDDB was to India's dairy revolution — a professionally managed, mission-driven statutory body that does what government cannot do alone, funded by those who benefit from doing it, accountable to Parliament annually, subject to judicial review by any citizen. NDDB quadrupled milk production in 30 years and made India the world's largest milk producer. Nobody called Verghese Kurien a parallel Prime Minister.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- III. GLOBAL MODELS                                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section III</div>
+  <div class="ch-title">Six Governance Models — What NTC Borrows from Each</div>
+  <div class="ch-sub">Every design element in NTC's architecture has a proven global precedent.</div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label">🇮🇳 India — Dairy</div>
+      <h4>NDDB / Amul Model</h4>
+      <p>Statutory body under NDDB Act 1987. Kurien's explicit condition for accepting chairmanship: locate NDDB in Anand, not Delhi, and prevent political interference in cooperative management structurally — not by goodwill. The farmer-owned cooperative structure was the mechanism that kept politicians out of day-to-day operations.</p>
+      <div class="insight">NTC applies: Operational location outside Delhi. The 10-crore citizen shareholder base is NTC's equivalent of the farmer-cooperative ownership structure.</div>
+    </div>
+    <div class="card blue-top">
+      <div class="card-label">🇮🇳 India — Finance</div>
+      <h4>SEBI / NaBFID Model</h4>
+      <p>SEBI's board includes government nominees (technocrats and senior officials) as a structural minority — but no sitting Ministers or MPs. NaBFID Act 2021, Section 6(3) goes further: any director elected or nominated as an MP or MLA <em>ceases to be a director</em> on the date of such election. Parliament wrote this into law in 2021.</p>
+      <div class="insight">NTC applies: The NaBFID Section 6(3) politician exclusion clause is copied verbatim into the NTC Act. Government nominees (senior domain-expert officials) hold a structural minority on the Operational Board.</div>
+    </div>
+    <div class="card gold-top">
+      <div class="card-label">🇸🇬 Singapore</div>
+      <h4>Temasek Holdings Model</h4>
+      <p>Wholly owned by the Minister for Finance, yet the Temasek Board comprises <em>no nominees of the Singapore Government or any other government.</em> The Finance Minister as shareholder holds the Board accountable without sitting on it or directing investment decisions. Major reserve drawdowns require Presidential concurrence — a "second key" constitutional check on extraordinary decisions.</p>
+      <div class="insight">NTC applies: The "second key" provision — any single corpus deployment above ₹1,000 crore requires written concurrence from two independent institutions (CAG and a Supreme Court-designated auditor). Institutional accountability without political operation.</div>
+    </div>
+    <div class="card" style="border-top-color:#5B21B6;">
+      <div class="card-label">🇳🇴 Norway</div>
+      <h4>Government Pension Fund (NBIM)</h4>
+      <p>Parliament sets the investment framework. The fund itself is "not a political instrument" — the Storting's own explicit framing. Annual white paper to Parliament; Supervisory Council (parliament-appointed) oversees; full public disclosure of all holdings and performance quarterly. The framework is political; the operation is not.</p>
+      <div class="insight">NTC applies: "The framework is set by Parliament; NTC operates within it." Parliament approves the enabling Act and receives the annual report. NTC's programmes are not a political instrument.</div>
+    </div>
+    <div class="card gold-top">
+      <div class="card-label">🇮🇳 India — Planning</div>
+      <h4>NITI Aayog / Planning Commission</h4>
+      <p>The Planning Commission included both politicians (PM as chair, Cabinet Ministers as ex-officio) and technocrats — and was widely criticised for political capture of resource allocation. NITI Aayog reduced fund-allocation power precisely to reduce political capture. The lesson from both: elected politicians in advisory roles is workable; in operational roles it is not.</p>
+      <div class="insight">NTC applies: Politicians participate in a National Advisory Council — formal, influential, recorded. They hold no operational votes. Advisory and executive are structurally separated.</div>
+    </div>
+    <div class="card teal-top">
+      <div class="card-label">🇬🇧 United Kingdom</div>
+      <h4>Charity Commission</h4>
+      <p>Charities Act 2011 Section 13(4) states explicitly: the Commission is "not subject to the direction or control of any ministers or other government departments." Accountable to Parliament, not to Government. Annual report to Parliament; NAO audit; DCMS Ministers answer Parliamentary questions. Politicians have visibility and accountability — not control.</p>
+      <div class="insight">NTC applies: "Accountable to Parliament, not to Government." Parliament (through annual reports, Standing Committee scrutiny, CAG audit) provides democratic legitimacy. The executive does not direct operations.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- IV. THE FOUR-LAYER ARCHITECTURE                    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section IV</div>
+  <div class="ch-title">The Four-Layer Constitutional Architecture</div>
+  <div class="ch-sub">A structural solution that gives each legitimate concern its own dedicated channel — with firewalls between them.</div>
+
+  <h3>Layer 1 — Parliamentary Enabling Act</h3>
+  <div class="layer gold">
+    <h5>The Constitutional Foundation</h5>
+    <p>NTC is constituted by an Act of Parliament — not a Cabinet resolution, not a private trust registration. This single choice answers the constitutional objection: NTC is not claiming authority above Parliament. It is a body <em>created by Parliament</em>, with powers defined and limited by Parliament, subject to amendment or dissolution by Parliament at any time.</p>
+  </div>
+  <div class="layer gold">
+    <h5>Provisions the Act Must Contain</h5>
+    <p><strong>Politician exclusion clause</strong> — verbatim from NaBFID Act 2021 Section 6(3): any director elected or nominated as an MP or MLA ceases to be a director from that date. <strong>No government guarantee provision</strong> — no government body shall guarantee any NTC borrowing or obligation. <strong>No government revenue stream provision</strong> — no tax or cess may be earmarked as NTC's repayment source without an Appropriation Act. <strong>CAG audit mandatory</strong> — non-waivable, annual, tabled in both Houses. <strong>Annual Parliamentary report</strong> — tabled by September 30 each year. <strong>Judicial review unrestricted</strong> — no immunity from Articles 32 and 226. <strong>Parliamentary dissolution power affirmed</strong> — explicit acknowledgement that Parliament may amend or repeal the Act.</p>
+  </div>
+
+  <h3>Layer 2 — Parliamentary Accountability Architecture</h3>
+  <div class="layer">
+    <h5>Accountability to Parliament, Not to Government</h5>
+    <p>The CAG audits NTC annually. The annual report (audited accounts, programme outcomes, procurement disclosures, conflict of interest declarations) is tabled in both Houses by September 30 each year — on a fixed date, not subject to executive delay. The relevant Parliamentary Standing Committee may summon NTC's CEO and board members annually or upon requisition. Committee recommendations are non-binding but must be responded to in writing within 60 days.</p>
+  </div>
+
+  <h3>Layer 3 — Operational Board</h3>
+  <div class="layer blue">
+    <h5>Composition — 15 Members</h5>
+    <p><strong>Independent Chair:</strong> appointed by a Search Committee comprising the Chief Justice of India (or nominee), the CAG, and the UPSC Chairman — no government veto on appointment. <strong>8 independent directors</strong> from industry, civil society, academia, and retired civil service (5-year cooling-off period). <strong>3 citizen representatives</strong> elected by NTC's shareholder base. <strong>2 government-nominated domain experts</strong> (senior officials — not politicians, not serving Ministers). <strong>1 RBI-nominated financial oversight member.</strong> No sitting MP, MLA, Minister, or serving IAS officer may serve. Former politicians permitted only after the 5-year cooling-off period, and only in the independent director category.</p>
+  </div>
+  <div class="layer blue">
+    <h5>The "Second Key" Provision</h5>
+    <p>Any single corpus deployment above ₹1,000 crore requires written concurrence from two independent institutions: the CAG and a Supreme Court-designated independent auditor. This prevents even a fully captured board from deploying large capital without external validation — modelled on Singapore's constitutional protection of sovereign reserves.</p>
+  </div>
+
+  <h3>Layer 4 — National Advisory Council</h3>
+  <div class="layer red">
+    <h5>The Political Inclusion Channel — 50 Members, Purely Advisory</h5>
+    <p>The Prime Minister as Honorary Chair. All 28 Chief Ministers (modelled on NITI Aayog Governing Council). 5 MPs nominated by the Lok Sabha Speaker (cross-party, proportional). 5 MPs nominated by the Rajya Sabha Chairman (cross-party). 5 senior officials (Secretary-level, nominated by Cabinet Secretary). 5 domain experts co-opted by the Operational Board. 2 NITI Aayog representatives for policy alignment. No operational votes — all members are advisory only.</p>
+  </div>
+  <div class="layer red">
+    <h5>Powers and Firewalls</h5>
+    <p>The Council meets twice annually. It reviews NTC's programme plan and previous year's outcomes. Its recommendations are non-binding but are published along with NTC's written response to each. It cannot direct any procurement decision, veto board decisions, appoint or remove board members, or alter NTC's mandate without a Parliamentary amendment. The separation between advisory and operational is structural — not dependent on individual goodwill.</p>
+  </div>
+
+  <div class="verdict">
+    <h3>Answering the Critics Directly</h3>
+    <p><strong>"NTC is above Parliament"</strong> — NTC is created by Parliament, limited by Parliament, and dissolvable by Parliament. Parliament is supreme. The Planning Commission had more allocative power with weaker legal grounding. This criticism misidentifies NTC's nature.</p>
+    <p><strong>"NTC is unaccountable"</strong> — CAG audit, annual Parliamentary report, Standing Committee scrutiny, judicial review by any citizen, and 10 crore citizen shareholders form an accountability architecture stronger than most existing statutory bodies.</p>
+    <p><strong>"Corporate funding means corporate capture"</strong> — Equity contribution gives no operational control, exactly as citizen shareholders have no individual operational control. The Operational Board, professionally composed and publicly appointed, makes all decisions. Conflict of interest rules mirror SEBI's own standards for listed company boards.</p>
+    <p><strong>"Politicians must be included"</strong> — They are. PM, all Chief Ministers, and 10 MPs have formal roles shaping NTC's priorities. What they do not have is operational control. This is the same distinction that makes SEBI and every functioning independent institution work.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- V. DESIGN PRINCIPLES LEARNED FROM GLOBAL FAILURES  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section V</div>
+  <div class="ch-title">Design Principles Derived from Institutional Failures</div>
+  <div class="ch-sub">Several well-studied infrastructure financing models worldwide illuminate what NTC's architecture must prevent. The lessons are applied without dwelling on the failures themselves.</div>
+
+  <div class="callout">
+    <h4>Principle 1 — Independent Revenue is Non-Negotiable</h4>
+    <p>Any institution whose repayment source is a government revenue stream (a tax, a cess, a budgetary allocation) is, in legal and financial substance, a government obligation. The CAG, Finance Commissions, and courts in multiple jurisdictions have consistently classified such arrangements as sovereign liabilities. NTC's corpus must therefore be funded entirely from private equity contributions and programme revenues — never from an earmarked government revenue stream. Government participates as investor, grant-giver, or policy-enabler. It never acts as revenue-assignor or guarantor.</p>
+  </div>
+  <div class="callout">
+    <h4>Principle 2 — Political Chairmanship Makes an Institution a Political Target</h4>
+    <p>When an elected official chairs a development institution, every institutional achievement becomes a political claim and every institutional failure becomes a political attack. The institution's credibility becomes inseparable from the ruling party's credibility — and vice versa. NTC's operational programmes must be structured so that no single political actor can claim them or be blamed for them. The independent chair, appointed through a process involving the CJI, CAG, and UPSC Chairman, is specifically designed to prevent this conflation.</p>
+  </div>
+  <div class="callout">
+    <h4>Principle 3 — Opacity Invites Hostile Reclassification</h4>
+    <p>Institutions that obscure their finances to avoid scrutiny ultimately create the conditions for adversarial classification by auditors and courts. NTC's defence is the opposite: full transparency by design. Audited accounts published to Parliament, complete procurement disclosure, public dashboards for all projects and outcomes. Transparency is not just the ethical choice — it is the strategic defence against hostile recharacterisation.</p>
+  </div>
+  <div class="callout">
+    <h4>Principle 4 — Achievements Must Be Institutionally Unattackable</h4>
+    <p>The goal is not merely to deliver outcomes but to deliver them through a governance design so clean that the outcomes are indefensible to attack. An institution chaired by an independent professional appointed through a judiciary-led process, funded by private equity with no government guarantee, with fully public accounts, and managed by a board with zero procurement-linked politicians, produces results that belong to India — not to any party, faction, or founding personality.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VI. CAN ONE NTC MANAGE 12 PILLARS?                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section VI</div>
+  <div class="ch-title">One Umbrella, Eleven Sub-Bodies</div>
+  <div class="ch-sub">No single institution can manage twelve transformation pillars directly. The answer is a federal model.</div>
+
+  <p>NTC Apex governs, funds, and holds accountable eleven specialist sub-bodies — each a full institution with its own CEO, specialist board, and programme accountability. NTC Apex manages the corpus, satisfies the Parliamentary accountability obligation, coordinates across pillars, and provides shared services. Sub-bodies execute with domain depth.</p>
+
+  <p>The model precedent is RBI's relationship with NABARD, NHB, SIDBI, and NPCI — or Tata Sons as a holding company for independent operating companies. Strategy and governance at the holding level; deep domain execution at the subsidiary. Cross-cutting functions (land, technology platform, financing instruments, conflict of interest management) remain at Apex level.</p>
+
+  <div class="umbrella">
+    <div class="umbrella-label">NTC Federal Architecture — Apex + Eleven Sub-Bodies</div>
+    <div class="apex-box">
+      <div>
+        <div class="a-tag">Apex</div>
+        <h4>NTC — National Transformation Cooperative</h4>
+        <p>Corpus management · Board governance · Parliamentary accountability · Cross-pillar coordination · Shared services (HR, legal, finance, tech, procurement) · Brand and standards</p>
+      </div>
+    </div>
+    <div class="sub-grid">
+      <div class="sub-box" style="border-left-color:#E8520A;">
+        <div class="s-tag" style="color:#E8520A;">Sub 1</div>
+        <h5>NTC Livelihoods</h5>
+        <p>Wages · Gig workers · ASHA/Anganwadi · Informal sector</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#4ADE80;">
+        <div class="s-tag" style="color:#4ADE80;">Sub 2</div>
+        <h5>NTC Agri</h5>
+        <p>10,000 FPOs · Cold chain · Farm insurance · Pesticide compliance</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#93C5FD;">
+        <div class="s-tag" style="color:#93C5FD;">Sub 3</div>
+        <h5>NTC Rail</h5>
+        <p>IHSRC · Kavach · Grade separation · ITMS · Booking reform</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#67E8F9;">
+        <div class="s-tag" style="color:#67E8F9;">Sub 4</div>
+        <h5>NTC Maritime</h5>
+        <p>Sagarmala · Vizhinjam · Coastal shipping · Port turnaround</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#C4B5FD;">
+        <div class="s-tag" style="color:#C4B5FD;">Sub 5</div>
+        <h5>NTC Cities</h5>
+        <p>Secondary cities · Remote work infra · Talent dispersion</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#FDE68A;">
+        <div class="s-tag" style="color:#FDE68A;">Sub 6</div>
+        <h5>NTC Heritage</h5>
+        <p>Handloom · GI products · Tourism circuits · ODOP</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#FDA4AF;">
+        <div class="s-tag" style="color:#FDA4AF;">Sub 7</div>
+        <h5>NTC Accountability</h5>
+        <p>Parliament Index · Rule of Law Index · Disclosure portals</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#6EE7B7;">
+        <div class="s-tag" style="color:#6EE7B7;">Sub 8</div>
+        <h5>NTC Education</h5>
+        <p>PM Shree · Curriculum reform · Private school disclosure</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#FDBA74;">
+        <div class="s-tag" style="color:#FDBA74;">Sub 9</div>
+        <h5>NTC Manufacturing</h5>
+        <p>ISVL · MSME clusters · Supply chain anchoring</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#DDD6FE;">
+        <div class="s-tag" style="color:#DDD6FE;">Sub 10</div>
+        <h5>NTC Health</h5>
+        <p>Hospital network · PM-JAY · Telemedicine · Jan Aushadhi</p>
+      </div>
+      <div class="sub-box" style="border-left-color:#99F6E4;">
+        <div class="s-tag" style="color:#99F6E4;">Sub 11</div>
+        <h5>NTC Digital</h5>
+        <p>Village facilitators · Solar micro-grids · BharatGen · AI diagnostics</p>
+      </div>
+    </div>
+    <div class="note-sm">Each sub-body independently governed. NTC Apex holds equity in each. All back-office functions run at Apex — no duplication. Five-year sunset review for each sub-body; merged or wound down if mandate is achieved.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VII. TASK REGISTER                                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section VII</div>
+  <div class="ch-title">Exhaustive Task Register</div>
+  <div class="ch-sub">Every major task from the vision document, tagged by NTC's role and mapped to ministry overlaps.</div>
+
+  <div style="margin-bottom:20px; line-height:2.4; font-size:14px;">
+    <strong>Nine role tags:</strong>&nbsp;
+    <span class="pill p-policy">POLICY</span> advocates for or designs policy — Government executes&nbsp;
+    <span class="pill p-blueprint">BLUEPRINT</span> designs the implementation architecture&nbsp;
+    <span class="pill p-execute">EXECUTE</span> NTC runs this end-to-end&nbsp;
+    <span class="pill p-fund">FUND</span> NTC provides capital&nbsp;
+    <span class="pill p-delegate">DELEGATE</span> NTC funds; specialist third party executes&nbsp;
+    <span class="pill p-monitor">MONITOR</span> NTC independently tracks and publishes outcomes&nbsp;
+    <span class="pill p-partner">PARTNER</span> NTC co-designs, co-funds, co-monitors with Government&nbsp;
+    <span class="pill p-catalyst">CATALYST</span> NTC creates conditions for others to act&nbsp;
+    <span class="pill p-convene">CONVENE</span> NTC brings stakeholders together
+  </div>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%;">#</th><th style="width:13%;">Pillar</th><th style="width:35%;">Task</th><th style="width:28%;">NTC Role Tags</th><th style="width:19%;">Ministry / State Overlap</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td colspan="5" style="color:var(--saffron);">Pillar 1 — Fair Wages &amp; Labour</td></tr>
+      <tr><td>1.1</td><td>Fair Wages</td><td>Constitute National Living Wage Board; commission Anker-methodology studies for all 36 states/UTs</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-convene">CONVENE</span></td><td>Ministry of Labour &amp; Employment</td></tr>
+      <tr><td>1.2</td><td>Fair Wages</td><td>Gazette interim Zone C floor; 17 sector-specific notifications with geographic zoning</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Labour; State Labour Depts</td></tr>
+      <tr><td>1.3</td><td>Fair Wages</td><td>Digital wage payment mandate — payslip job-code system for employers above 10 workers</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Labour; EPFO; MeitY</td></tr>
+      <tr><td>1.4</td><td>Fair Wages</td><td>EPFO payslip cross-matching; gender pay gap flagging on Ministry of Labour dashboard</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-monitor">MONITOR</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>EPFO; Ministry of Labour</td></tr>
+      <tr><td>1.5</td><td>Fair Wages</td><td>Gig worker welfare fund — ₹500/month platform contribution mechanism</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Labour; DPIIT</td></tr>
+      <tr><td>1.6</td><td>Fair Wages</td><td>ASHA/Anganwadi/mid-day meal worker reclassification from honorary volunteers to minimum-wage contract workers</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span> <span class="pill p-convene">CONVENE</span></td><td>MoHFW; MoWCD; MoE; Finance Ministry</td></tr>
+      <tr><td>1.7</td><td>Fair Wages</td><td>Tea estate wage parity — Assam/WB plantation workers brought to Anker minimum with ESIC coverage</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Labour; State govts; Tea Board</td></tr>
+      <tr><td>1.8</td><td>Fair Wages</td><td>Private school teacher minimum wage enforcement — linked to CBSE/CISCE affiliation renewal</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span></td><td>MoE; State Education Depts; CBSE; CISCE</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:var(--green);">Pillar 2 — Agricultural Transformation</td></tr>
+      <tr><td>2.1</td><td>Agriculture</td><td>1,000 FPOs Year 1 in non-APMC states; scale to 10,000 by Year 3 — ₹50 lakh seed capital each</td><td><span class="pill p-fund">FUND</span> <span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>Ministry of Agriculture; NABARD; SFAC</td></tr>
+      <tr><td>2.2</td><td>Agriculture</td><td>Farm income insurance — satellite-verified 45-day payout; pilot 100 districts Year 1; all districts Year 3</td><td><span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-partner">PARTNER</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Agriculture; ISRO; Insurance companies</td></tr>
+      <tr><td>2.3</td><td>Agriculture</td><td>5,000 taluka cold storage facilities — construction and FPO-linked operation</td><td><span class="pill p-fund">FUND</span> <span class="pill p-delegate">DELEGATE</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Food Processing; NHB; State govts (land)</td></tr>
+      <tr><td>2.4</td><td>Agriculture</td><td>APMC reform — voluntary reform in states where FPOs are operational; build the alternative before reforming the incumbent</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-catalyst">CATALYST</span> <span class="pill p-monitor">MONITOR</span></td><td>State Agriculture Depts (state subject)</td></tr>
+      <tr><td>2.5</td><td>Agriculture</td><td>FPO pesticide compliance — FMIS deployment, residue testing in 50 pilot clusters</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>FSSAI; Ministry of Agriculture; ICAR</td></tr>
+      <tr><td>2.6</td><td>Agriculture</td><td>PM-KUSUM solar pump scale-up 10× — 50 lakh installations</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>MNRE; State DISCOMs</td></tr>
+      <tr><td>2.7</td><td>Agriculture</td><td>Fertilizer subsidy reform — replace per-unit subsidy with DBT direct farmer transfers</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Chemicals &amp; Fertilizers; DBT Mission</td></tr>
+      <tr><td>2.8</td><td>Agriculture</td><td>FPO supply chains to mid-day meals, government procurement, e-commerce platforms</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-convene">CONVENE</span> <span class="pill p-partner">PARTNER</span></td><td>MoE (MDM); Corporate partners; FCI</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:#1D4ED8;">Pillar 3 — Railway Transformation</td></tr>
+      <tr><td>3.1</td><td>Railway</td><td>Form IHSRC — trunk line upgrade DPRs for Delhi-Mumbai and West Coast corridors</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-fund">FUND</span></td><td>Ministry of Railways; Indian Railways (asset owner)</td></tr>
+      <tr><td>3.2</td><td>Railway</td><td>Kavach ATP deployment across all trunk routes via Project Development Agreement with Railways</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Railways; RDSO; Kavach vendors</td></tr>
+      <tr><td>3.3</td><td>Railway</td><td>Grade separation — 500 highest-traffic level crossings Years 2–3</td><td><span class="pill p-fund">FUND</span> <span class="pill p-partner">PARTNER</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Railways; NHAI; State PWDs (land)</td></tr>
+      <tr><td>3.4</td><td>Railway</td><td>ITMS — first corridor Delhi-Mumbai; real-time train management platform</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Railways; CRIS</td></tr>
+      <tr><td>3.5</td><td>Railway</td><td>Rail booking reform — advance window 120→30 days; dynamic chart preparation; tatkal restructure</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Railways; IRCTC; CRIS</td></tr>
+      <tr><td>3.6</td><td>Railway</td><td>West Coast Corridor — Mumbai to Thiruvananthapuram 13–15 hours</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-fund">FUND</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>Ministry of Railways; State govts (land — Maharashtra, Goa, Karnataka, Kerala)</td></tr>
+      <tr><td>3.7</td><td>Railway</td><td>Secondary city rail connectivity — 6 city pairs Year 2; extended to BFSI, healthcare, manufacturing</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-partner">PARTNER</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Railways; State govts</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:#0E7490;">Pillar 4 — Maritime &amp; Coastal Logistics</td></tr>
+      <tr><td>4.1</td><td>Maritime</td><td>Sagarmala acceleration — NTC co-funds and monitors 50 priority projects from the ₹6L crore pipeline</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Ports; State Maritime Boards; Port Trusts</td></tr>
+      <tr><td>4.2</td><td>Maritime</td><td>Vizhinjam Phase 2–3 — NTC infrastructure bonds subscribed for completion financing</td><td><span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>Kerala Govt; Adani Ports; Ministry of Ports</td></tr>
+      <tr><td>4.3</td><td>Maritime</td><td>Coastal shipping promotion — cabotage reform implementation; incentive design for modal shift</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-catalyst">CATALYST</span></td><td>Ministry of Ports; Directorate General of Shipping</td></tr>
+      <tr><td>4.4</td><td>Maritime</td><td>Port turnaround dashboard — public scorecard of 13 major + 50 minor ports; 24-hour target by 2030</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-monitor">MONITOR</span></td><td>Ministry of Ports; Indian Ports Association</td></tr>
+      <tr><td>4.5</td><td>Maritime</td><td>Logistics cost programme — industry-government working group; target 13–14% GDP → under 10%</td><td><span class="pill p-convene">CONVENE</span> <span class="pill p-monitor">MONITOR</span> <span class="pill p-policy">POLICY</span></td><td>Ministry of Commerce; DPIIT; Road Transport; Railways</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:#5B21B6;">Pillars 5 &amp; 6 — Secondary Cities &amp; Heritage Economy</td></tr>
+      <tr><td>5.1</td><td>Sec. Cities</td><td>Talent dispersion — incentivise IT/BFSI/design firms to open satellite offices in Tier-2 cities</td><td><span class="pill p-fund">FUND</span> <span class="pill p-catalyst">CATALYST</span> <span class="pill p-partner">PARTNER</span></td><td>DPIIT; Smart Cities Mission; State IT Depts</td></tr>
+      <tr><td>5.2</td><td>Sec. Cities</td><td>Remote-work infrastructure — co-working, reliable fibre, housing upgrades in 50 secondary cities</td><td><span class="pill p-fund">FUND</span> <span class="pill p-delegate">DELEGATE</span></td><td>MoHUA; BharatNet; NHB</td></tr>
+      <tr><td>6.1</td><td>Heritage</td><td>Handloom FPO network — 10,000 weaver FPOs; direct linkage with Zudio, Amazon, Flipkart, Meesho</td><td><span class="pill p-fund">FUND</span> <span class="pill p-execute">EXECUTE</span> <span class="pill p-convene">CONVENE</span></td><td>Ministry of Textiles; DC Handlooms</td></tr>
+      <tr><td>6.2</td><td>Heritage</td><td>ODOP national rollout — 635 GI-tagged product premium marketing; value chain development</td><td><span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-fund">FUND</span> <span class="pill p-partner">PARTNER</span></td><td>DPIIT; Ministry of Commerce; State govts</td></tr>
+      <tr><td>6.3</td><td>Heritage</td><td>Heritage tourism circuits — Hampi, Badami, Rajasthan ring, Grand Southern Circuit; single booking platform</td><td><span class="pill p-fund">FUND</span> <span class="pill p-execute">EXECUTE</span> <span class="pill p-partner">PARTNER</span></td><td>Ministry of Tourism; ASI; State Tourism Depts</td></tr>
+      <tr><td>6.4</td><td>Heritage</td><td>GI producer price monitoring — publish producer vs retail prices; intermediary audit</td><td><span class="pill p-monitor">MONITOR</span> <span class="pill p-catalyst">CATALYST</span></td><td>DPIIT (GI Registry); Ministry of Commerce</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:#BE123C;">Pillar 7 — Public Accountability</td></tr>
+      <tr><td>7.1</td><td>Accountability</td><td>Parliament &amp; Assembly Effectiveness Index — NLP debate scoring; IndiaParliamentWatch.in dashboard</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Lok Sabha &amp; Rajya Sabha Secretariats; State Assemblies (data MoU)</td></tr>
+      <tr><td>7.2</td><td>Accountability</td><td>India Rule of Law Progress Index — 718-district quarterly survey; panchayat-to-national rollup</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Law schools consortium; MHA; State Police; District Administrations</td></tr>
+      <tr><td>7.3</td><td>Accountability</td><td>Elected official conflict of interest disclosure — educational institutions, real estate, contracts</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>Election Commission; MoLA; State Assemblies</td></tr>
+      <tr><td>7.4</td><td>Accountability</td><td>Skin-in-the-game reform — government employee medical/education reimbursement limited to government facilities</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-monitor">MONITOR</span></td><td>DoPT; Finance Ministry; State Govts (service rules)</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:var(--green);">Pillars 8–11 — Education, Manufacturing, Health, Digital</td></tr>
+      <tr><td>8.1</td><td>Education</td><td>PM Shree upgrades — 7,730 schools; tenders Year 1; completion Year 3; learning outcome baseline published</td><td><span class="pill p-fund">FUND</span> <span class="pill p-partner">PARTNER</span> <span class="pill p-monitor">MONITOR</span></td><td>MoE; State Education Depts; CBSE; SMCs</td></tr>
+      <tr><td>8.2</td><td>Education</td><td>Curriculum reform pilot — self-directed 25%, sports 10–25%, life skills 10% — in PM Shree schools</td><td><span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>MoE; NCERT; CBSE; State SCERTs</td></tr>
+      <tr><td>8.3</td><td>Education</td><td>Private school related-party disclosure; Parent Grievance Boards</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span> <span class="pill p-monitor">MONITOR</span></td><td>MoE; State Education Depts; CBSE/CISCE</td></tr>
+      <tr><td>8.4</td><td>Education</td><td>Teacher absenteeism tracking — unannounced audit programme; district-level dashboard</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-monitor">MONITOR</span></td><td>State Education Depts; UDISE+</td></tr>
+      <tr><td>9.1</td><td>Manufacturing</td><td>ISVL joint venture — MoU with Toyota, Honda, Suzuki Year 1; Aurangabad plant Year 2</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span> <span class="pill p-partner">PARTNER</span></td><td>DPIIT; Ministry of Heavy Industry; Maharashtra Govt (land)</td></tr>
+      <tr><td>9.2</td><td>Manufacturing</td><td>MSME component supply chains — ISVL-linked 2,000 component clusters</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>Ministry of MSME; SIDBI; State Industrial Corporations</td></tr>
+      <tr><td>9.3</td><td>Manufacturing</td><td>ISVL franchise workshops — 6,773 taluka-level workshops by Year 5</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span> <span class="pill p-delegate">DELEGATE</span></td><td>Ministry of MSME; State Skill Development; NSDC</td></tr>
+      <tr><td>10.1</td><td>Health</td><td>NTC hospital network — Narayana/Aravind/Amrita models to underserved districts; 300 hospitals by Year 10</td><td><span class="pill p-fund">FUND</span> <span class="pill p-execute">EXECUTE</span> <span class="pill p-partner">PARTNER</span></td><td>MoHFW; NHM; State Health Depts; NHA (PM-JAY)</td></tr>
+      <tr><td>10.2</td><td>Health</td><td>Telemedicine — NTC rural health hubs connected to specialist network via ABDM</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-partner">PARTNER</span></td><td>NHA; MeitY; ISRO; BSNL</td></tr>
+      <tr><td>10.3</td><td>Health</td><td>Jan Aushadhi expansion — 10,000 outlets in NTC health network</td><td><span class="pill p-partner">PARTNER</span> <span class="pill p-fund">FUND</span> <span class="pill p-monitor">MONITOR</span></td><td>BPPI; Ministry of Chemicals; MoHFW</td></tr>
+      <tr><td>11.1</td><td>AI/Digital</td><td>Village digital facilitators — one per 500 households; 50,000 villages</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span></td><td>MeitY; BSNL; BharatNet</td></tr>
+      <tr><td>11.2</td><td>AI/Digital</td><td>Solar micro-grid deployment — 50,000 villages with under 8 hours reliable power</td><td><span class="pill p-fund">FUND</span> <span class="pill p-execute">EXECUTE</span> <span class="pill p-partner">PARTNER</span></td><td>MNRE; State DISCOMs; REC</td></tr>
+      <tr><td>11.3</td><td>AI/Digital</td><td>AI diagnostic tools in NTC health network — BharatGen-linked in 22 languages</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-partner">PARTNER</span></td><td>IndiaAI Mission (MeitY); NHA; IIT NLP labs</td></tr>
+      <tr><td>11.4</td><td>AI/Digital</td><td>Parliament/Assembly NLP transcript classification platform for Effectiveness Index</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>Lok Sabha/Rajya Sabha (data MoU); NIC</td></tr>
+
+      <tr class="section-row"><td colspan="5" style="color:var(--saffron);">NTC Institutional — Cross-Cutting</td></tr>
+      <tr><td>I.1</td><td>Institution</td><td>NTC Act drafted and passed — politician exclusion clause; no-guarantee provision; CAG audit mandatory</td><td><span class="pill p-policy">POLICY</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>Ministry of Finance; Ministry of Law; Parliament</td></tr>
+      <tr><td>I.2</td><td>Institution</td><td>NTC Apex Board constituted — 15 members; independent chair via CJI + CAG + UPSC process</td><td><span class="pill p-execute">EXECUTE</span></td><td>Search Committee (CJI, CAG, UPSC Chair)</td></tr>
+      <tr><td>I.3</td><td>Institution</td><td>Corporate member recruitment — 800 founding members; equity contribution framework formalised</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span></td><td>CII; FICCI; NASSCOM (member recruitment)</td></tr>
+      <tr><td>I.4</td><td>Institution</td><td>Citizen shareholder programme — 10 crore citizens × ₹500; digital issuance via NSDL/CDSL</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-fund">FUND</span></td><td>SEBI; NSDL; CDSL; MeitY</td></tr>
+      <tr><td>I.5</td><td>Institution</td><td>National Advisory Council — PM, all 28 CMs, 10 cross-party MPs, senior IAS; biannual meetings</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-convene">CONVENE</span></td><td>PMO; Cabinet Secretariat; NITI Aayog</td></tr>
+      <tr><td>I.6</td><td>Institution</td><td>11 NTC sub-bodies incorporated; CEOs hired; specialist boards constituted</td><td><span class="pill p-execute">EXECUTE</span></td><td>NTC Apex Board</td></tr>
+      <tr><td>I.7</td><td>Institution</td><td>Annual Parliamentary report — CAG-audited; outcomes; procurement disclosures — tabled by September 30</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-monitor">MONITOR</span></td><td>CAG; Parliament Secretariats; Standing Committees</td></tr>
+      <tr><td>I.8</td><td>Institution</td><td>Conflict of interest architecture — disclosure, recusal protocol, blind trust requirements</td><td><span class="pill p-execute">EXECUTE</span> <span class="pill p-blueprint">BLUEPRINT</span></td><td>NTC Board; Independent Judicial Monitor</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VIII. RACI                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section VIII</div>
+  <div class="ch-title">RACI — Roles Across Key Task Categories</div>
+  <div class="ch-sub">R = Responsible · A = Accountable · C = Consulted · I = Informed</div>
+
+  <table>
+    <thead>
+      <tr><th style="width:22%;">Task Category</th><th>NTC Apex</th><th>NTC Sub-Body</th><th>Central Ministry</th><th>State Govt</th><th>Corporate Members</th><th>Parliament / CAG</th><th>Citizens</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>NTC Act — passage</strong></td><td><span class="tag-c">C</span></td><td>–</td><td><span class="tag-a">A/R</span></td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-a">A</span> passes law</td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Corpus mobilisation</strong></td><td><span class="tag-a">A/R</span></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td>–</td><td><span class="tag-r">R</span> contribute</td><td><span class="tag-i">I</span></td><td><span class="tag-r">R</span> buy shares</td></tr>
+      <tr><td><strong>Sub-body strategy &amp; budget</strong></td><td><span class="tag-a">A</span></td><td><span class="tag-r">R</span></td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Programme execution (e.g. FPO launch)</strong></td><td><span class="tag-a">A</span></td><td><span class="tag-r">R</span></td><td><span class="tag-c">C/I</span></td><td><span class="tag-c">C</span> local approvals</td><td><span class="tag-r">R</span> secondees, tech</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Land acquisition</strong></td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-a">A/R</span></td><td><span class="tag-a">A/R</span> primary</td><td>–</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Railway upgrade execution</strong></td><td><span class="tag-a">A</span> NTC Rail</td><td><span class="tag-r">R</span> NTC Rail</td><td><span class="tag-a">A/R</span> asset owner</td><td><span class="tag-c">C</span> land / ROW</td><td><span class="tag-r">R</span> finance, tech</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Outcome measurement &amp; publication</strong></td><td><span class="tag-a">A/R</span></td><td><span class="tag-r">R</span> pillar data</td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> audit</td><td><span class="tag-a">A</span> right to know</td></tr>
+      <tr><td><strong>Policy advocacy</strong></td><td><span class="tag-r">R</span></td><td><span class="tag-r">R</span> pillar-specific</td><td><span class="tag-a">A</span> decides</td><td><span class="tag-a">A</span> state subjects</td><td><span class="tag-c">C</span></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Annual Parliamentary report</strong></td><td><span class="tag-a">A/R</span></td><td><span class="tag-r">R</span> pillar data</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> receives, audits</td><td><span class="tag-i">I</span> public</td></tr>
+      <tr><td><strong>Government financing (bonds, grants)</strong></td><td><span class="tag-a">A</span> issues</td><td><span class="tag-r">R</span> deploys</td><td><span class="tag-r">R</span> subscribes, grants</td><td><span class="tag-c">C</span></td><td><span class="tag-c">C</span></td><td><span class="tag-a">A</span> audit</td><td><span class="tag-i">I</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>Two Structural Notes on RACI</h4>
+    <p><strong>Land acquisition is a state subject</strong> under Schedule 7 of the Constitution. NTC cannot acquire land. The State Government is Accountable and Responsible. NTC's role is to co-fund compensation, provide design input, and monitor timelines. State commitment on land is a pre-condition for NTC funding release — documented in a State MoU signed before programme launch.</p>
+    <p><strong>Railway assets belong to Indian Railways.</strong> NTC Rail cannot own or operate any railway infrastructure. The model is a Project Development Agreement — as used for the Dedicated Freight Corridor and Delhi Metro — where NTC co-funds specific upgrades, Indian Railways executes, the upgraded asset remains with Railways, and NTC holds a performance bond. NTC is accountable for outcomes; Railways is accountable for the asset.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- IX. CORPUS MECHANICS AND CASH FLOW                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section IX</div>
+  <div class="ch-title">Corpus Mechanics and Financial Sustainability</div>
+  <div class="ch-sub">Three questions answered with precision: what the corpus actually is, whether it is real money, and how the 26-year deployment model works.</div>
+
+  <h3>The ₹5 Lakh Crore Founding Corpus</h3>
+
+  <p>The vision document states that 800 corporate members each contribute 1% of their equity net worth. This requires unpacking. "Equity" has three distinct meanings in corporate finance, each producing a very different number:</p>
+
+  <div class="two-col">
+    <div class="card red-top">
+      <div class="card-label">Interpretation A — Face-Value Paid-Up Capital</div>
+      <h4>Not this</h4>
+      <p>The nominal face-value paid-up capital of India's top 800 companies is very small — typically ₹1–10 per share × number of shares. 1% of this aggregate would yield approximately ₹200–500 crore total. This is not the intended meaning.</p>
+    </div>
+    <div class="card" style="border-top-color:#047857;">
+      <div class="card-label">Interpretation B — Net Worth (Shareholders' Equity)</div>
+      <h4>This is the correct reading</h4>
+      <p>Net worth = paid-up capital + all accumulated reserves. India's top 800 listed companies have an average net worth of approximately ₹7,000 crore per company. 800 × ₹7,000 crore × 1% = ₹56,000 crore corporate equity. With citizen shareholders (10 crore × ₹500 = ₹5,000 crore) and capital additions over time, the founding corpus reaches ₹5 lakh crore.</p>
+    </div>
+  </div>
+
+  <h3>The 26-Year Financial Model</h3>
+
+  <p>The updated financial model (v1.21) operates on five phases with distinct financial mechanics:</p>
+
+  <div class="fin-grid">
+    <div class="fin-box">
+      <div class="yr">Phase 1</div>
+      <div class="amt">₹5.04 L Cr</div>
+      <div class="lbl">2026–2030: Foundation Building<br>₹5 lakh Cr opening corpus, 12% CAGR, ₹1 lakh Cr/yr capital additions, 2% CSR</div>
+    </div>
+    <div class="fin-box">
+      <div class="yr">Phase 2</div>
+      <div class="amt">₹12.30 L Cr</div>
+      <div class="lbl">2031–2035: Accelerate<br>CSR rebased to 1%, equity yield begins (2% of closing corpus)</div>
+    </div>
+    <div class="fin-box">
+      <div class="yr">10-Year Total</div>
+      <div class="amt">₹17.34 L Cr</div>
+      <div class="lbl">Cumulative deployable (100%)<br>₹13 lakh Cr at 75% allocation to H/E/A</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin:20px 0;">
+    <h4>Key Model Parameters (v1.21)</h4>
+    <table style="margin:12px 0;">
+      <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Starting Capital</td><td>₹5,00,000 Crore</td><td>2026 founding corpus</td></tr>
+        <tr><td>CAGR Rate</td><td>12%</td><td>Annual growth on opening corpus</td></tr>
+        <tr><td>Capital Additions</td><td>₹1,00,000 Cr/yr</td><td>Years 2027–2030 only</td></tr>
+        <tr><td>Bond Issuance</td><td>10% of opening corpus</td><td>Phase 1 & 2 only (2026–2035)</td></tr>
+        <tr><td>Interest Rate</td><td>5%</td><td>On outstanding bonds. Path to 2–2.5% post Year 5 if outcomes proven.</td></tr>
+        <tr><td>Equity Yield</td><td>2%</td><td>On closing corpus, Phase 2 onwards</td></tr>
+        <tr><td>Bullet Maturity</td><td>15 years</td><td>Phase 1 bonds → 2041–2045, Phase 2 → 2046–2050</td></tr>
+        <tr><td>Deputed Experts</td><td>7,500 start</td><td>1% annual growth; estimates, actuals TBD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Phase 1 Year-by-Year Deployment (75% to Health/Education/Agriculture)</h3>
+
+  <table>
+    <thead><tr><th>Year</th><th style="text-align:right;">Opening Corpus</th><th style="text-align:right;">NTC Deployable</th><th style="text-align:right;">75% H/E/A Allocation</th><th style="text-align:right;">Cumulative Bonds</th></tr></thead>
+    <tbody>
+      <tr><td>2026</td><td style="text-align:right;">₹5,00,000 Cr</td><td style="text-align:right;">₹75,500 Cr</td><td style="text-align:right;">₹56,625 Cr</td><td style="text-align:right;">₹50,000 Cr</td></tr>
+      <tr><td>2027</td><td style="text-align:right;">₹5,60,000 Cr</td><td style="text-align:right;">₹81,500 Cr</td><td style="text-align:right;">₹61,125 Cr</td><td style="text-align:right;">₹1,06,000 Cr</td></tr>
+      <tr><td>2028</td><td style="text-align:right;">₹6,37,200 Cr</td><td style="text-align:right;">₹97,664 Cr</td><td style="text-align:right;">₹73,248 Cr</td><td style="text-align:right;">₹1,70,720 Cr</td></tr>
+      <tr><td>2029</td><td style="text-align:right;">₹7,23,664 Cr</td><td style="text-align:right;">₹1,15,206 Cr</td><td style="text-align:right;">₹86,405 Cr</td><td style="text-align:right;">₹2,43,426 Cr</td></tr>
+      <tr><td>2030</td><td style="text-align:right;">₹8,20,504 Cr</td><td style="text-align:right;">₹1,34,285 Cr</td><td style="text-align:right;">₹1,00,714 Cr</td><td style="text-align:right;">₹3,24,547 Cr</td></tr>
+      <tr style="background:var(--navy-pastel); font-weight:700;"><td>Phase 1 Total</td><td style="text-align:right;"></td><td style="text-align:right;">₹5,04,156 Cr</td><td style="text-align:right;">₹3,78,117 Cr</td><td style="text-align:right;"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:20px;">
+    <h4>The Bond Rate — 5% Today, With a Path to 2–2.5%</h4>
+    <p>NTC issues bonds at <strong>5% interest</strong> — competitive with government securities, attractive to institutional investors, and sustainable for NTC's on-lending to programme partners at 5–6%. This rate reflects the starting position: a new institution with strong structural fundamentals but no track record.</p>
+    <p>The path to cheaper borrowing is performance. The World Bank (IBRD) borrows at 1.5–2% today — because 75 years of demonstrated results gave lenders confidence. Once NTC demonstrates measurable outcomes over 5–7 years, its credit profile improves. The 2–2.5% range becomes achievable through the same mechanism that gives IBRD its rate: <strong>a track record of delivery that lenders can trust</strong>.</p>
+    <p style="margin:0;">The 5% starting rate is not a ceiling — it is a launch point. The bullet maturity structure and early call option protect NTC from rate risk throughout the transition.</p>
+  </div>
+
+  <h3>Combined Capital Flows — NTC + Government</h3>
+
+  <p>NTC's programme architecture can extend to government health, education, and agriculture budgets — not as a fund transfer, but as an accountability layer. At 25% co-management of these three sectors:</p>
+
+  <table>
+    <thead><tr><th>Year</th><th style="text-align:right;">NTC Capital (75%)</th><th style="text-align:right;">Govt Co-management*</th><th style="text-align:right;">Combined Pool</th></tr></thead>
+    <tbody>
+      <tr><td>2026</td><td style="text-align:right; color:#C8960C;">₹56,625 Cr</td><td style="text-align:right; color:#1B6B3A;">₹97,000 Cr</td><td style="text-align:right; font-weight:700;">₹1,53,625 Cr</td></tr>
+      <tr><td>2027</td><td style="text-align:right; color:#C8960C;">₹61,125 Cr</td><td style="text-align:right; color:#1B6B3A;">₹1,04,750 Cr</td><td style="text-align:right; font-weight:700;">₹1,65,875 Cr</td></tr>
+      <tr><td>2028</td><td style="text-align:right; color:#C8960C;">₹73,248 Cr</td><td style="text-align:right; color:#1B6B3A;">₹1,13,250 Cr</td><td style="text-align:right; font-weight:700;">₹1,86,498 Cr</td></tr>
+      <tr><td>2029</td><td style="text-align:right; color:#C8960C;">₹86,405 Cr</td><td style="text-align:right; color:#1B6B3A;">₹1,22,250 Cr</td><td style="text-align:right; font-weight:700;">₹2,08,655 Cr</td></tr>
+      <tr><td>2030</td><td style="text-align:right; color:#C8960C;">₹1,00,714 Cr</td><td style="text-align:right; color:#1B6B3A;">₹1,32,000 Cr</td><td style="text-align:right; font-weight:700;">₹2,32,714 Cr</td></tr>
+      <tr style="background:var(--navy-pastel); font-weight:700;"><td>Phase 1 Total</td><td style="text-align:right;">₹3,78,117 Cr</td><td style="text-align:right;">₹5,69,250 Cr</td><td style="text-align:right;">₹9,47,367 Cr</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px; color:var(--ash); margin-top:8px;"><em>* Govt Co-management: 25% of combined health, education, and agriculture budgets at 8% annual growth. Sectoral breakup will be finalised in co-management agreements with each ministry.</em></p>
+
+  <div class="callout" style="margin-top:20px;">
+    <h4>The Multiplier Effect</h4>
+    <p>As NTC programmes demonstrate measurable outcomes — reduced child malnutrition, improved learning metrics, higher farm yields — the data informs course correction. Subsidies that were compensating for system failure become unnecessary. Administrative overhead that existed to manage inefficiency shrinks. The savings recycle into further investment.</p>
+    <p>Every ₹1 deployed through NTC's outcome-linked architecture generates ₹3–4 in economic value. <em>[Reference: NDDB, NABARD, AAI institutional benchmarks]</em></p>
+    <p style="margin:0;">At the Phase 1 combined pool of ₹9.47 lakh crore, this represents ₹28–38 lakh crore in economic output potential over five years.</p>
+  </div>
+
+  <h3>The Government Financing Menu — Without Fiscal Entanglement</h3>
+  <table>
+    <thead><tr><th>Instrument</th><th>Mechanism</th><th>Why It Preserves Independence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>NTC Infrastructure Bonds</strong><br><span style="font-size:11px; color:var(--ash);">(Government subscribes as investor)</span></td><td>Government buys NTC bonds at 6–7% as an investor — earning a return. Bond sits on NTC's balance sheet. Repaid from programme revenues.</td><td>Government is a bondholder, not a guarantor. No tax revenue is escrowed as repayment. No sovereign liability created.</td></tr>
+      <tr><td><strong>NaBFID Concessional Loans</strong><br><span style="font-size:11px; color:var(--ash);">(20–25 year, below-market rate)</span></td><td>NaBFID — India's dedicated infrastructure finance institution under the NaBFID Act 2021 — lends to NTC sub-bodies at concessional rates for long-gestation infrastructure.</td><td>NaBFID is a separately capitalised institution regulated by RBI. NaBFID loans are not government loans. No government guarantee required.</td></tr>
+      <tr><td><strong>Incentive-Linked Grants &amp; Interest-Free Loans</strong><br><span style="font-size:11px; color:var(--ash);">(Milestone-triggered, Special Assistance model)</span></td><td>Central grants and 50-year interest-free loans disbursed to state governments under the NTC framework, modeled on the Scheme for Special Assistance to States for Capital Investment. Released in tranches only upon independent verification of pre-agreed policy and execution milestones.</td><td>Operates through the federal budget as capital expenditure. States lead execution natively. NTC acts as the verification body, avoiding top-down Central debt creation or direct operational interference.</td></tr>
+      <tr><td><strong>CSR Co-Investment</strong><br><span style="font-size:11px; color:var(--ash);">(Companies Act Section 135)</span></td><td>SEBI/MCA notification designates NTC sub-body programmes as Schedule 7 qualifying CSR activities. Corporate CSR spend (beyond the 1-1-1 equity commitment) directed to NTC programmes.</td><td>Corporate expenditure — not government expenditure. No government guarantee. Separate and additive to the equity corpus.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn">
+    <h4>The One Rule That Cannot Be Broken</h4>
+    <p>No tax, cess, or earmarked government revenue stream may be designated as NTC's repayment source or primary operating revenue. The moment this boundary is crossed, Finance Commissions and courts in multiple jurisdictions have consistently classified such arrangements as sovereign liabilities — and the Centre can, and will, treat NTC's obligations as government debt and penalise its borrowing capacity accordingly. All NTC income must derive from its corpus returns, programme activities, or voluntary contributions. Government participates as investor, grant-giver, or policy-enabler. Never as revenue-assignor.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- X. ORGANISATION AND STAFFING                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section X</div>
+  <div class="ch-title">Organisation Structure and Staffing Model</div>
+  <div class="ch-sub">A lean permanent core, a large seconded talent pool, and a time-bound execution model for capital programmes.</div>
+
+  <h3>The Three-Category Workforce</h3>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin:20px 0;">
+    <div class="card">
+      <div class="card-label">Category 1</div>
+      <h4>Permanent Staff</h4>
+      <p>Institutional continuity, regulatory relationships, Parliamentary accountability, governance, finance, legal, outcomes measurement. These roles never disappear. Target: ~750 people across Apex and all sub-bodies at Year 5 steady-state.</p>
+    </div>
+    <div class="card blue-top">
+      <div class="card-label">Category 2</div>
+      <h4>Seconded Professionals</h4>
+      <p>Domain expertise at scale. 800 corporate members contribute 1% of employees on 12–36 month postings. Their salaries are paid by their employer — NTC's cash cost for secondees is zero. At full scale: ~30,000 seconded professionals active annually across all sub-bodies.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-label">Category 3</div>
+      <h4>Time-Bound Execution Teams</h4>
+      <p>Capital programme delivery — school upgrades, hospital construction, cold chain rollout. These are contracted out to specialist project management firms (as DMRC contracted L&T, Tata Projects, etc.). Not on NTC's payroll. Wound down on programme completion.</p>
+    </div>
+  </div>
+
+  <div class="pull">The 30,000 seconded professionals are never NTC employees. Their salaries never appear on NTC's payroll. This is the critical distinction the original analysis obscured: NTC's actual employment liability at steady state is ~750 permanent staff — not 30,000. The secondment model delivers domain expertise at zero incremental labour cost to NTC.</div>
+
+  <h3>NTC Apex — Permanent Staff</h3>
+  <table>
+    <thead><tr><th>Function</th><th>Key Roles</th><th>Headcount (Yr1 → Yr5)</th><th>Talent Source</th></tr></thead>
+    <tbody>
+      <tr><td>CEO Office</td><td>CEO, COO, Chief of Staff</td><td>3 → 5</td><td>Open market — top-tier; compensation ₹3–5 crore p.a.</td></tr>
+      <tr><td>Finance &amp; Treasury</td><td>CFO, Corpus Manager, Sub-body Controllers, Compliance</td><td>8 → 20</td><td>IIM/CA/CFA + investment banking</td></tr>
+      <tr><td>Governance &amp; Legal</td><td>General Counsel, Company Secretary, Parliamentary Liaison, Ethics Officer</td><td>6 → 12</td><td>Law firms + retired IAS (5-yr cooling-off)</td></tr>
+      <tr><td>Outcomes &amp; Research</td><td>Chief Outcomes Officer, 11 Pillar Research Leads, Data Science</td><td>14 → 28</td><td>Economists, public policy analysts, researchers</td></tr>
+      <tr><td>Corporate Relations</td><td>Head Partnerships, Member Relationship Management, Secondment Coordination</td><td>8 → 20</td><td>Corporate sector + industry body alumni</td></tr>
+      <tr><td>Communications &amp; Policy</td><td>Chief Communications Officer, Parliamentary Relations, Media</td><td>5 → 14</td><td>Media + policy + government communications</td></tr>
+      <tr><td>Technology Platform</td><td>CTO, Platform Engineering, Data Infrastructure, Security</td><td>8 → 24</td><td>Senior engineers + tech-sector secondees</td></tr>
+      <tr><td>Human Resources</td><td>CHRO, Talent, Secondment Management, L&amp;D</td><td>5 → 15</td><td>HR professionals — critical role managing secondee pipeline</td></tr>
+      <tr><td style="font-weight:700;">Apex Total</td><td></td><td><strong>57 → 138</strong></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Each Sub-Body — Permanent Core</h3>
+  <p>Each sub-body carries a small permanent professional core (CEO, Finance, Programme Management, Monitoring) augmented by seconded domain experts. The ratio target is 20% permanent, 80% seconded. As major capital programmes (e.g., 7,730 school upgrades) complete, the execution capacity winds down — leaving only the monitoring and programme management core.</p>
+
+  <table>
+    <thead><tr><th>Sub-Body</th><th>Permanent Core (Yr1 → Yr5)</th><th>Seconded (Peak)</th><th>Post-Execution (Yr10)</th></tr></thead>
+    <tbody>
+      <tr><td>NTC Livelihoods</td><td>15 → 50</td><td>~2,000</td><td>~40 monitoring/policy</td></tr>
+      <tr><td>NTC Agri</td><td>20 → 80</td><td>~5,000</td><td>~60 (FPOs are self-running; monitoring continues)</td></tr>
+      <tr><td>NTC Rail</td><td>10 → 35</td><td>~2,500</td><td>~25 (upgrades complete; outcomes monitoring)</td></tr>
+      <tr><td>NTC Maritime</td><td>8 → 22</td><td>~800</td><td>~18</td></tr>
+      <tr><td>NTC Cities</td><td>8 → 20</td><td>~600</td><td>~15</td></tr>
+      <tr><td>NTC Heritage</td><td>10 → 30</td><td>~1,500</td><td>~25 (handloom FPOs self-running)</td></tr>
+      <tr><td>NTC Accountability</td><td>15 → 40</td><td>~1,200</td><td>~40 (Index runs permanently)</td></tr>
+      <tr><td>NTC Education</td><td>15 → 55</td><td>~3,500</td><td>~30 (schools built; monitoring continues)</td></tr>
+      <tr><td>NTC Manufacturing</td><td>10 → 30</td><td>~2,500</td><td>~20</td></tr>
+      <tr><td>NTC Health</td><td>18 → 65</td><td>~4,500</td><td>~55 (hospital network operates permanently)</td></tr>
+      <tr><td>NTC Digital</td><td>15 → 50</td><td>~2,500</td><td>~40 (digital infrastructure permanent)</td></tr>
+      <tr><td style="font-weight:700;">All Sub-Bodies</td><td><strong>144 → 477</strong></td><td><strong>~26,600 peak</strong></td><td><strong>~368 permanent</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>Secondment Management — How It Actually Works</h4>
+    <p><strong>Who bears the cost:</strong> The corporate member pays the secondee's salary throughout the posting. This is the 1% talent contribution. NTC provides a working environment, programme responsibility, and performance assessment. The employee returns to their employer with enhanced skills — making secondment a talent retention and development benefit for the corporate, not a sacrifice.</p>
+    <p><strong>Matching discipline:</strong> NTC publishes a quarterly Demand Signal — specific skills needed across all sub-bodies. Corporates nominate from matching talent pools. NTC HR selects on skills, not on corporate affiliation. No corporate can direct which programme their secondee works on — this would recreate the exact conflict-of-interest dynamic the governance architecture is designed to prevent.</p>
+    <p><strong>Performance:</strong> Secondees are reviewed by NTC sub-body leadership. The corporate's 1% commitment is assessed on the quality of nominees and their programme outcomes — accountability at the corporate level without directing individual placements.</p>
+  </div>
+
+  <h3>Compensation Philosophy</h3>
+  <p>NTC must attract professionals who would otherwise join McKinsey, a bulge-bracket bank, or a senior Ministry posting. Civil-service-grade compensation will produce compliance professionals; transformation requires leaders. Compensation is market-competitive, disclosed annually in the Parliamentary report.</p>
+
+  <table>
+    <thead><tr><th>Role</th><th>Compensation Band</th><th>Benchmark</th></tr></thead>
+    <tbody>
+      <tr><td>CEO, NTC Apex</td><td>₹3–5 crore p.a. + outcomes-linked component</td><td>Large NBFC/DFI CEO; comparable to SEBI/RBI Whole-Time Member level</td></tr>
+      <tr><td>Sub-Body CEOs (11)</td><td>₹1.5–2.5 crore p.a.</td><td>Senior corporate VP / mid-size company MD</td></tr>
+      <tr><td>Chief Research / Outcomes Officers</td><td>₹60–90 lakh p.a.</td><td>Senior think-tank principal / mid-career economist at IIM/ISI</td></tr>
+      <tr><td>Programme Managers</td><td>₹25–45 lakh p.a.</td><td>Mid-career manager from corporate, NGO, or civil service</td></tr>
+      <tr><td>Field Programme Officers</td><td>₹10–18 lakh p.a.</td><td>Above market for district-level roles — designed to attract motivated talent to field postings</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- XI. OPEN QUESTIONS                                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section XI</div>
+  <div class="ch-title">Open Questions Requiring Resolution Before Constituting NTC</div>
+  <div class="ch-sub">These are honest gaps — identified during design — that need decisions, not further study.</div>
+
+  <table>
+    <thead><tr><th style="width:5%;">#</th><th style="width:22%;">Issue</th><th style="width:38%;">The Tension</th><th style="width:35%;">Resolution Direction</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Railway Asset Ownership</strong></td>
+        <td>NTC Rail co-funds Kavach, grade separation, ITMS — but assets belong to Indian Railways. NTC cannot own railway infrastructure. If NTC funds an upgrade, who operates it, maintains it, and who is accountable if Railways under-maintains a funded upgrade?</td>
+        <td>Project Development Agreement modelled on DFC/DMRC precedent. NTC funds specific upgrade packages; Railways executes; NTC holds a performance bond; outcomes are publicly monitored and published. NTC earns accountability for outcomes, not ownership of assets.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>State Subject Overlap</strong></td>
+        <td>Wages, education, health, and land acquisition are state subjects. NTC cannot impose standards on states. A hostile state government can simply refuse NTC programme entry.</td>
+        <td>NTC programmes are voluntary for states. Participation unlocks NTC funding and corporate secondee support. Non-participation is publicly identified. Social and electoral pressure — not legal compulsion — is the mechanism. State MoU is a pre-condition of funding release.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Land for Infrastructure</strong></td>
+        <td>Cold storage, NTC health hubs, ISVL franchise workshops require land. Land acquisition under LARR 2013 is state-administered and can be slow. NTC cannot acquire land itself.</td>
+        <td>Prioritise government/panchayat land already available (SVAMITVA-mapped). For large acquisitions, state commitment on land is a pre-condition of NTC investment release. NTC co-funds compensation — above LARR floor, with community consent protocol, independently audited.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Hostile Central Government</strong></td>
+        <td>A future government opposed to NTC can block NaBFID lending, deny SEBI registration of bonds, withhold government grant subscriptions, and refuse to table the annual report. NTC's independence is real but not unconditional.</td>
+        <td>Design NTC to be financially viable on private equity + citizen corpus + international bonds alone — without government financing. The ₹5 lakh crore founding corpus is NTC's standalone floor. The 10-crore citizen shareholder base creates electoral cost for suppression. No perfect answer; mitigation, not elimination.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Sub-Body Proliferation</strong></td>
+        <td>Eleven sub-bodies with independent CEOs and boards creates coordination overhead, turf competition, and risk of bureaucratic growth beyond the original design — a pattern well-documented in Indian public institutions.</td>
+        <td>Five-year sunset review for each sub-body: merged or dissolved if mandate is achieved or programme better executed elsewhere. Shared services mandate removes back-office duplication. NTC Apex retains veto on sub-body headcount above defined bands. Annual headcount disclosed in Parliamentary report.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Ministry Non-Cooperation with Monitoring</strong></td>
+        <td>NTC's monitoring function — Parliament Effectiveness Index, Rule of Law Index, railway performance tracking — creates institutional adversaries in the very Ministries NTC depends on for data access and programme cooperation.</td>
+        <td>Source monitoring data from multiple independent channels: citizen surveys, GPS-based tracking, RTI-derived data, satellite imagery, independent field visits — not dependent on Ministry cooperation alone. The Parliamentary Standing Committee receives both NTC's findings and the Ministry's response annually, creating a public record of non-cooperation.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FOOTER -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- XII. PLAN B — IF PARLIAMENT DOES NOT PASS NTC ACT -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- XII. ALTERNATIVE MODELS — IF THE STATUTORY PATH IS SHAPED     -->
+<!--      DIFFERENTLY OR PROGRAMMES NEED TO BEGIN BEFORE ACT       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section XII</div>
+  <div class="ch-title">Alternative Models — If the Parliamentary Route Is Shaped Differently or Takes Longer</div>
+  <div class="ch-sub">Plan A (Parliamentary Act) is the recommended path. These structures are documented so that the transformation agenda is never held hostage to the timing of a single legal process — and so that programmes can begin building momentum from 2026 regardless.</div>
+
+  <p>The vision document recommends NTC be constituted by an Act of Parliament. That model is analysed in depth in Sections I–XI. In practice, legislative timelines are inherently uncertain — the NTC Bill may be shaped through the parliamentary process, or there may be a period before passage during which the founding coalition needs a legal vehicle to begin building the corporate membership base, mobilise early corpus tranches, and launch the first FPO and school upgrade programmes. This section documents three alternative institutional structures — each capable of executing all fifteen pillars, each using the identical task register and sub-body design — to ensure that momentum is never lost while the recommended statutory model is pursued.</p>
+
+  <div class="pull">The architecture principle: the legal vehicle may be different or temporary. The programmes are not. Every structure below uses the same 67-task register from Section VII, the same eleven sub-body design from Section VI, and the same financial instruments from Section IX. What differs is the enforceability of the corporate equity obligation, the statutory nature of the accountability mechanism, and the scale of capital that can be formally committed from Day 1.</div>
+
+  <h3>The Three Alternative Structures</h3>
+
+  <div style="display:grid; grid-template-columns:1fr; gap:20px; margin:24px 0;">
+
+    <!-- OPTION B1 -->
+    <div style="background:#FFFFFF; border-radius:10px; padding:24px 28px; border-left:4px solid #1D4ED8; box-shadow:0 1px 4px rgba(0,0,0,0.07);">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <div style="background:#1D4ED8; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; padding:4px 10px; border-radius:6px; white-space:nowrap;">Option B1</div>
+        <div>
+          <div style="font-size:17px; font-weight:700; color:var(--navy);">Section 8 Company + Public Charitable Trust (Hybrid)</div>
+          <div style="font-size:13px; color:var(--ash); font-style:italic;">Operational in 90 days. No Parliamentary approval needed.</div>
+        </div>
+      </div>
+      <p style="font-size:14px;"><strong>How it works:</strong> NTC is incorporated as a Section 8 (not-for-profit) company under the Companies Act 2013 — the same legal form used by Infosys Foundation, Azim Premji Foundation, and thousands of credible institutions. A parallel Public Charitable Trust holds the citizen shareholder corpus. The two entities together replicate NTC's function: the company executes programmes and manages corporate membership; the trust holds the ₹5,000 crore citizen corpus and issues tax-exempt receipts.</p>
+      <p style="font-size:14px;"><strong>What it can do immediately:</strong> Launch all eleven sub-bodies as wholly-owned Section 8 subsidiaries. Enter MoUs with state governments. Accept CSR contributions from corporates (Schedule VII qualifying activity — MCA notification required but achievable by executive order). Hire permanent staff. Issue bonds (subject to SEBI registration as an NCD issuer). Accept foreign contributions under FCRA for international development capital.</p>
+      <p style="font-size:14px;"><strong>What it cannot do without Parliament:</strong> Cannot compel corporate equity contribution as a legal obligation — contributions remain voluntary. Cannot access EPFO/LIC bond mandates. Cannot have CAG audit as a statutory right (CAG can still be invited to audit, but it is not mandatory). Cannot use the NaBFID concessional loan window (NaBFID lends to "eligible borrowers" defined by GoI notification — NTC must be specifically notified). Politician exclusion is by Articles of Association, not law — a future board could amend it.</p>
+      <table style="margin-top:12px;">
+        <thead><tr><th style="background:#1D4ED8;">Dimension</th><th style="background:#1D4ED8;">Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Speed to launch</td><td>90 days from decision</td></tr>
+          <tr><td>Corpus mobilisation</td><td>Voluntary — no legal compulsion. Likely ₹3–5 lakh crore from committed corporates vs ₹5 lakh crore under statutory model</td></tr>
+          <tr><td>Political durability</td><td>Moderate — government cannot dissolve it, but can restrict FCRA, deny CSR Schedule VII status, block SEBI registration</td></tr>
+          <tr><td>Parliamentary accountability</td><td>Voluntary — NTC can invite Standing Committee scrutiny; CAG audit by invitation; annual report by choice</td></tr>
+          <tr><td>Programme execution</td><td>Full — all fifteen pillars executable; sub-bodies fully operational</td></tr>
+          <tr><td>Recommendation</td><td><span class="tag-r">RECOMMENDED BRIDGE VEHICLE</span> — best balance of speed, credibility, and resilience while statutory NTC Act progresses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- OPTION B2 -->
+    <div style="background:#FFFFFF; border-radius:10px; padding:24px 28px; border-left:4px solid #C8960C; box-shadow:0 1px 4px rgba(0,0,0,0.07);">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <div style="background:#C8960C; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; padding:4px 10px; border-radius:6px; white-space:nowrap;">Option B2</div>
+        <div>
+          <div style="font-size:17px; font-weight:700; color:var(--navy);">Society + Producer Company Federation</div>
+          <div style="font-size:13px; color:var(--ash); font-style:italic;">The Amul model — taken national. 2–3 year build. Strongest against capture.</div>
+        </div>
+      </div>
+      <p style="font-size:14px;"><strong>How it works:</strong> NTC is constituted as a Society under the Societies Registration Act 1860 — the exact legal form under which NDDB was first incorporated (1965) before receiving its own Act in 1987. The citizen shareholder corpus is structured as a Producer Company (Companies Act Section 464) federation — a formal cooperative model where members own shares and elect representation. The 10,000 FPOs become member cooperatives of the Federation, giving NTC's cooperative structure genuine grass-roots ownership rather than nominal citizen shareholding.</p>
+      <p style="font-size:14px;"><strong>What it can do:</strong> Everything B1 can do. Additionally: FPO-linked cooperative ownership gives NTC a democratic legitimacy that no corporate entity can claim — 10,000 FPOs representing 1.5 crore farmers are members. Cooperative structure is constitutionally protected under Article 19(1)(c). The government cannot easily dissolve a functioning cooperative federation without triggering significant political and legal backlash.</p>
+      <p style="font-size:14px;"><strong>The trade-off:</strong> Slower to build — genuine cooperative federation requires FPOs to be functional first. Cannot be launched in 90 days. Realistically operational at scale in Year 2–3, after the FPO programme has created sufficient member organisations. Financial scale is also lower in the early years — cooperative capital is patient but smaller.</p>
+      <table style="margin-top:12px;">
+        <thead><tr><th style="background:#92400E; color:#FFFFFF;">Dimension</th><th style="background:#92400E; color:#FFFFFF;">Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Speed to launch</td><td>2–3 years for full federation; pilot Society can be registered in 30 days</td></tr>
+          <tr><td>Corpus mobilisation</td><td>Lower initial corpus; FPO membership fees + corporate voluntary contributions. Grows with FPO network.</td></tr>
+          <tr><td>Political durability</td><td>High — cooperative structure has constitutional protection; farmer-member base creates strong political shield</td></tr>
+          <tr><td>Parliamentary accountability</td><td>Voluntary — same as B1; no statutory obligation</td></tr>
+          <tr><td>Programme execution</td><td>Full for Agri and Heritage pillars immediately; other pillars require parallel corporate entity</td></tr>
+          <tr><td>Recommendation</td><td><span class="tag-c">SUPPLEMENTARY</span> — run B2 in parallel as the Agri/Heritage sub-body legal structure within B1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- OPTION B3 -->
+    <div style="background:#FFFFFF; border-radius:10px; padding:24px 28px; border-left:4px solid #1B6B3A; box-shadow:0 1px 4px rgba(0,0,0,0.07);">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <div style="background:#1B6B3A; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; padding:4px 10px; border-radius:6px; white-space:nowrap;">Option B3</div>
+        <div>
+          <div style="font-size:17px; font-weight:700; color:var(--navy);">State-Level NTC Entities + National Confederation</div>
+          <div style="font-size:13px; color:var(--ash); font-style:italic;">Bottom-up federalism. Begin where political will exists.</div>
+        </div>
+      </div>
+      <p style="font-size:14px;"><strong>How it works:</strong> If the central government will not pass the NTC Act, willing state governments constitute State Transformation Cooperatives (STCs) under their own state legislation — or as Section 8 companies registered in their state. NTC at the national level becomes a Confederation — a voluntary association of STCs that pools corpus, shares technology platforms, coordinates procurement, and maintains common standards. Each STC is state-funded and state-governed, with NTC Confederation providing governance standards, secondment management, technology, and bond issuance capability.</p>
+      <p style="font-size:14px;"><strong>Historical precedent:</strong> This is precisely how India's cooperative movement grew — state cooperative federations preceded the national federation. IFFCO (Indian Farmers Fertiliser Cooperative) began as a state-level federation before growing national. The model works, but is slower and creates inter-state coordination complexity.</p>
+      <p style="font-size:14px;"><strong>The trade-offs:</strong> State-level NTCs are subject to state political cycles — every five years, a new CM can reorient the STC. Cross-state programmes (railways, maritime logistics) require bilateral agreements between STCs, which is complex. The corpus is fragmented across state entities, reducing the scale benefit of a single national corpus. However, this model is genuinely politically resilient: even if one state's STC is politically compromised, the other 27 continue.</p>
+      <table style="margin-top:12px;">
+        <thead><tr><th style="background:#1B6B3A; color:#FFFFFF;">Dimension</th><th style="background:#1B6B3A; color:#FFFFFF;">Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Speed to launch</td><td>3–6 months per state; begin with 3–5 willing states</td></tr>
+          <tr><td>Corpus mobilisation</td><td>State-fragmented; each STC builds its own corpus from state corporates; harder to reach ₹5 lakh crore nationally</td></tr>
+          <tr><td>Political durability</td><td>Very high — no central government can dissolve state entities; state electoral accountability</td></tr>
+          <tr><td>Parliamentary accountability</td><td>State legislative assembly accountability for each STC; NTC Confederation reports voluntarily</td></tr>
+          <tr><td>Programme execution</td><td>Full for state-level pillars; cross-state programmes require inter-STC coordination agreements</td></tr>
+          <tr><td>Recommendation</td><td><span class="tag-i">FALLBACK</span> — use if both central legislation and B1 corporate model face sustained obstruction</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <h3>Recommendation — The Decision Flowchart</h3>
+
+  <div style="background:var(--navy); border-radius:12px; padding:26px 30px; margin:24px 0;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:18px;">NTC Model Selection — Decision Logic</div>
+    <div style="display:grid; gap:12px;">
+      <div style="background:rgba(200,150,12,0.1); border:1px solid rgba(200,150,12,0.3); border-radius:8px; padding:14px 18px;">
+        <div style="font-size:12px; font-weight:700; color:var(--gold); font-family:sans-serif; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Step 1 — The Recommended Path: Pursue the Parliamentary Act (from 2026)</div>
+        <p style="font-size:13px; color:#9BA8B5; margin:0;">Begin government engagement and corporate coalition-building in 2026. Introduce the NTC Bill at the earliest available Parliamentary session. Simultaneously register NTC India Foundation (Section 8 company) so that programme work — FPO seeding, school tender preparation, corporate membership outreach — begins immediately. The two structures run in parallel: the Foundation builds momentum and demonstrates outcomes; the statutory NTC absorbs it upon Act passage. Every month of Foundation work is not wasted — it is the proof of concept that makes the Act easier to pass.</p>
+      </div>
+      <div style="background:rgba(29,78,216,0.1); border:1px solid rgba(29,78,216,0.3); border-radius:8px; padding:14px 18px;">
+        <div style="font-size:12px; font-weight:700; color:#93C5FD; font-family:sans-serif; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Step 2 — If Act Fails or Stalls: Activate Plan B1</div>
+        <p style="font-size:13px; color:#9BA8B5; margin:0;">NTC India Foundation (Section 8) becomes the primary vehicle. All eleven sub-bodies are incorporated as wholly-owned Section 8 subsidiaries. Corporate membership is formalised through legally binding Membership Agreements (not statutory obligation, but contractually enforced). Citizen shareholding is structured through the parallel trust. Full programme execution begins. Parliament watch, public pressure, and demonstrated outcomes build the case for the Act.</p>
+      </div>
+      <div style="background:rgba(27,107,58,0.1); border:1px solid rgba(27,107,58,0.3); border-radius:8px; padding:14px 18px;">
+        <div style="font-size:12px; font-weight:700; color:#6EE7B7; font-family:sans-serif; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Step 3 — B2 Runs Inside B1 as the Agri/Heritage Structure</div>
+        <p style="font-size:13px; color:#9BA8B5; margin:0;">NTC Agri sub-body is structured as a Producer Company Federation (B2 model) as the 10,000 FPOs come online. This gives the cooperative structure genuine grass-roots ownership — farmers are members, not just beneficiaries. The FPO-linked cooperative becomes NTC's most politically durable component, making the overall institution harder to dismantle regardless of which government is in power.</p>
+      </div>
+      <div style="background:rgba(190,18,60,0.08); border:1px solid rgba(190,18,60,0.2); border-radius:8px; padding:14px 18px;">
+        <div style="font-size:12px; font-weight:700; color:#FDA4AF; font-family:sans-serif; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Step 4 — Pioneer States: Approach 3 Willing State Governments in 2026</div>
+        <p style="font-size:13px; color:#9BA8B5; margin:0;">Regardless of where the Parliamentary process stands, approach 3 willing state governments in 2026 to constitute State Transformation Cooperatives — one each in South, West, and East India. These STCs serve a dual purpose: they execute state-level NTC programmes immediately, and they demonstrate the model's viability to other states and to Parliament. A functioning STC in Kerala, Maharashtra, and West Bengal is among the most persuasive arguments for passing the national NTC Act — demonstrated outcomes speak louder than any policy document.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Plan B Task Register — What Changes Under B1</h3>
+  <p>Under Plan B1 (Section 8 company model), the full task register from Section VII applies unchanged. What changes is only the institutional execution of a small number of tasks that depend on statutory authority:</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%;">#</th><th style="width:30%;">Task</th><th style="width:25%;">Plan A (Statutory NTC)</th><th style="width:25%;">Plan B1 (Section 8)</th><th style="width:15%;">Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>I.1</td><td>Corporate equity contribution — legal compulsion</td><td>Legally binding under NTC Act; enforceable in court</td><td>Contractually binding under Membership Agreement; enforceable in civil court but less robust</td><td style="color:#C2410C;">Medium — some corporates may delay</td></tr>
+      <tr><td>I.2</td><td>CAG audit</td><td>Mandatory, statutory, non-waivable</td><td>Voluntary — CAG invited to audit; published as standard practice</td><td style="color:#C2410C;">Low — in practice CAG will audit if invited and NTC is significant enough</td></tr>
+      <tr><td>I.3</td><td>NaBFID concessional loans</td><td>NTC is eligible borrower by virtue of NTC Act</td><td>Requires separate GoI notification designating NTC as eligible — needs executive order, not legislation</td><td style="color:#C2410C;">Medium — requires government cooperation</td></tr>
+      <tr><td>I.4</td><td>EPFO/LIC bond mandate</td><td>NTC bonds notified as eligible infrastructure bonds under EPFO/IRDA guidelines</td><td>Same — requires PFRDA/IRDA notification, achievable by executive order without legislation</td><td style="color:#1B6B3A;">Low — executive order sufficient</td></tr>
+      <tr><td>I.5</td><td>Politician exclusion</td><td>Statutory — NaBFID Section 6(3) language in NTC Act; cannot be amended without Parliament</td><td>Articles of Association of Section 8 company — board can amend with member approval</td><td style="color:#C2410C;">Medium — requires active governance vigilance</td></tr>
+      <tr><td>I.6</td><td>Parliamentary Standing Committee scrutiny</td><td>Formal right — Committee can summon NTC CEO and board</td><td>Voluntary — NTC invites Committee scrutiny; no legal compulsion either way</td><td style="color:#1B6B3A;">Low — in practice NTC benefits from this accountability</td></tr>
+      <tr><td>I.7</td><td>Annual report tabling in Parliament</td><td>Mandatory — tabled by September 30 each year</td><td>Voluntary — NTC publishes annual report and invites tabling; depends on ruling party cooperation</td><td style="color:#C2410C;">Medium — hostile government may refuse to table</td></tr>
+      <tr><td>All others</td><td>All twelve pillar programmes</td><td>Fully executable</td><td>Fully executable — no statutory authority needed to fund FPOs, build hospitals, deploy Kavach, or run schools</td><td style="color:#1B6B3A;">None — programme execution identical</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Plan B RACI — What Changes Under B1</h3>
+  <p>The full RACI from Section VIII applies with these modifications under Plan B1:</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:25%;">Task Category</th><th style="width:25%;">Plan A RACI</th><th style="width:25%;">Plan B1 RACI</th><th style="width:25%;">Note</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Corporate equity contribution</strong></td><td>Corporate members: <span class="tag-r">R</span> (statutory obligation). NTC Apex: <span class="tag-a">A</span>.</td><td>Corporate members: <span class="tag-r">R</span> (contractual). NTC Legal: <span class="tag-a">A</span> for enforcement. Founding Board: <span class="tag-a">A</span> for member recruitment.</td><td>Enforcement mechanism weaker; founding board personal credibility (Murthy, Premji, Parekh) does more heavy lifting</td></tr>
+      <tr><td><strong>CAG audit</strong></td><td>CAG: <span class="tag-r">R</span> (mandatory). NTC: <span class="tag-a">A</span> (must enable).</td><td>CAG: <span class="tag-r">R</span> (if invited). NTC Board: <span class="tag-a">A</span> (must proactively invite and fund the audit).</td><td>Functionally identical if NTC invites proactively — which it must, for credibility</td></tr>
+      <tr><td><strong>Parliamentary accountability</strong></td><td>NTC CEO: <span class="tag-r">R</span> (must appear when summoned). Parliament: <span class="tag-a">A</span>.</td><td>NTC CEO: <span class="tag-r">R</span> (appears voluntarily). Parliament: <span class="tag-a">A</span> (may invite but cannot compel). NTC must proactively seek scrutiny.</td><td>NTC actually benefits from Parliamentary scrutiny — it should seek it, not avoid it</td></tr>
+      <tr><td><strong>Politician exclusion</strong></td><td>AoA + statutory provision: both. Board cannot waive.</td><td>AoA only. Founding members vote to entrench via special resolution (75% supermajority to amend). Added protection: make politician exclusion a condition in each corporate Membership Agreement — violation triggers membership termination.</td><td>Requires active governance maintenance; weaker than statute but workable</td></tr>
+      <tr><td><strong>All programme RACI</strong></td><td colspan="2">Unchanged — NTC Apex accountable, sub-bodies responsible, ministries consulted/informed, state govts engaged. Programme execution does not depend on statutory status.</td><td>No change</td></tr>
+    </tbody>
+  </table>
+
+  <div class="verdict" style="margin-top:28px;">
+    <h3>The Bottom Line on Alternative Models</h3>
+    <p>The statutory NTC Act is the recommended model because it provides the strongest legal foundation, the most binding accountability mechanisms, and the clearest constitutional legitimacy. It is the model that should be pursued from the first day of engagement in 2026 — and pursued persistently.</p>
+    <p>The Section 8 Foundation model is not a consolation prize. Infosys Foundation, Azim Premji Foundation, and Tata Trusts are Section 8 entities — and they are among the most credible institutions in India. NTC as a Section 8 company with a founding board of Narayana Murthy, Deepak Parekh, Nandan Nilekani, and Azim Premji is not institutionally weak. It is institutionally formidable. The absence of a statutory mandate is a legal gap, not a credibility gap — and demonstrated outcomes over 3–5 years build the public and political case for Parliament to act.</p>
+    <p><strong>The decisive insight:</strong> NTC's political durability in any model comes not from its legal form but from three things: the 10-crore citizen shareholder base (voters who own it), the 10,000 FPO cooperative network (farmers who depend on it), and the demonstrated outcomes that make dismantling it politically costly. These three factors are achievable under both Plan A and Plan B. Build them first. The legal form will follow.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- XIII. OPTION B4 — GOVERNMENT-LED HYBRID MODEL             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-num">Section XIII</div>
+  <div class="ch-title">Option B4 — The Government-Led Hybrid</div>
+  <div class="ch-sub">NITI Aayog as Apex · Line Ministries as Executors · Independent Digital Audit Authority as Accountability Engine · REIT-linked Public Capital as Financing</div>
+
+  <p>Options B1, B2, and B3 are private-sector-led structures that operate alongside or instead of government. Option B4 is structurally different: it uses the existing government machinery as the delivery engine — with NITI Aayog holding the coordination mandate, line ministries executing each pillar, and a genuinely independent digital audit body providing the accountability that political oversight alone cannot.</p>
+
+  <p>The financing innovation is equally distinctive. Instead of a private equity corpus, B4 mobilises capital through three new public instruments: outcome-linked transformation bonds, REIT and InvIT listings of underutilised government infrastructure assets, and citizen and diaspora bonds. India has the regulatory framework for all of these — they simply have not been assembled as a coherent transformation financing stack.</p>
+
+  <div class="pull">B4's central insight: the Indian government already controls the assets, the field networks, the statutory authority, and the budget scale that no private institution can replicate. The missing ingredient is not money or machinery — it is an accountability architecture that makes government officials behave as if they had skin in the game. The Independent Digital Audit Authority is that ingredient.</div>
+
+  <h3>Layer 1 — NITI Aayog: From Advisory Body to Transformation Coordinator</h3>
+
+  <p>NITI Aayog today is an advisory body. It publishes excellent reports, produces state rankings, and hosts policy conversations. What it does not have is fund-allocation authority, statutory power over ministries, or the staffing depth to drive programme execution. For B4 to work, NITI Aayog must be upgraded — not legislatively, but operationally — through a Cabinet Order that gives it three things it currently lacks.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label">Addition 1</div>
+      <h4>Transformation Fund Authority</h4>
+      <p>A Sarvodaya Transformation Fund of ₹15,000–20,000 crore per year, approved by Parliament as a single line item in the Union Budget, administered by NITI Aayog as a cross-ministry coordination budget. Ministries draw from this fund against signed Outcome Delivery Agreements — not as a reimbursement, but as a performance-linked advance. Unspent funds revert. Overspent (against verified outcomes) get topped up.</p>
+      <div class="insight">Legal basis: Cabinet Order + annual Budget appropriation. No Parliamentary Act required for the fund itself.</div>
+    </div>
+    <div class="card blue-top">
+      <div class="card-label">Addition 2</div>
+      <h4>Outcome Delivery Agreement (ODA) Authority</h4>
+      <p>Every participating ministry signs a 5-year ODA with NITI Aayog — a public, binding document specifying targets for each year (e.g., Ministry of Agriculture: 10,000 FPOs operational by Year 3, 5,000 cold storage facilities by Year 4). ODAs are published on a public dashboard the day they are signed. Quarterly progress is published automatically. Ministries cannot quietly revise targets without a public amendment process.</p>
+      <div class="insight">Precedent: UK Spending Review Public Service Agreements (PSAs) — binding inter-departmental commitments with public scorecard.</div>
+    </div>
+    <div class="card gold-top">
+      <div class="card-label">Addition 3</div>
+      <h4>Lateral Hire Authority at Scale</h4>
+      <p>NITI Aayog and all participating ministries get expanded lateral entry authority — not just the 9 Joint Secretary slots already approved, but a rolling pool of 60–80 senior lateral hires across the transformation portfolio. Private sector professionals hired at market rate (₹75–90 lakh p.a. at JS-equivalent level). 3-year fixed terms, renewable once. This is the B4 version of the 1-1-1 talent contribution — targeted, senior, and directly embedded in government execution.</p>
+      <div class="insight">No new law needed: existing DoPT lateral entry scheme, expanded by Cabinet Order.</div>
+    </div>
+    <div class="card" style="border-top-color:#0E7490;">
+      <div class="card-label">Addition 4</div>
+      <h4>Corporate Technical Assistance (limited 1-1-1)</h4>
+      <p>Rather than full-year mass secondments, B4 uses project-specific technical assistance: corporate teams embedded in ministries for 3–6 month problem-solving assignments against specific ODA targets. A technology company helps Ministry of Health build the telemedicine platform. A logistics firm redesigns FCI cold chain operations. A fintech builds the FPO credit scoring system. Corporate contribution is real but time-bounded — matching the nature of government programme cycles.</p>
+      <div class="insight">Complements lateral hires: laterals bring permanent capacity; corporate TA brings project-specific depth.</div>
+    </div>
+  </div>
+
+  <h3>Layer 2 — Ministry Departments as Executing Sub-Bodies</h3>
+  <p>Each of the eleven transformation pillars maps to an existing Central Ministry. Under B4, these ministries are not coordinated from outside — they become internal owners of their pillar, accountable to NITI Aayog via ODA, monitored by the IDAA, and financed partly from the Transformation Fund and partly from the new capital instruments below.</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%;">#</th><th style="width:28%;">Pillar</th><th style="width:30%;">Ministry / Department</th><th style="width:37%;">B4 Advantage over NTC Sub-body</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Fair Wages &amp; Labour</td><td>Ministry of Labour &amp; Employment + EPFO</td><td>Ministry can gazette wage notifications directly; EPFO has payslip data natively; no MoU needed to access enforcement machinery</td></tr>
+      <tr><td>2</td><td>Agricultural Transformation</td><td>Ministry of Agriculture &amp; Farmers Welfare + NABARD</td><td>NABARD already funds FPOs; Ministry has SFAC, APEDA, NHB field networks; PM-KUSUM already under ministry</td></tr>
+      <tr><td>3</td><td>Railway Transformation</td><td>Ministry of Railways + RDSO + IRFC</td><td>No asset ownership conflict — ministry owns the assets; Kavach deployment is internal; IRFC already raises bonds for railway capex</td></tr>
+      <tr><td>4</td><td>Maritime &amp; Coastal</td><td>Ministry of Ports, Shipping &amp; Waterways + Major Port Trusts</td><td>Sagarmala is already under this ministry; Port Trusts have statutory land authority; no coordination friction</td></tr>
+      <tr><td>5</td><td>Secondary Cities</td><td>Ministry of Housing &amp; Urban Affairs + Smart Cities Mission</td><td>Smart Cities Mission already running in 100 cities; AMRUT funding available; no new institution needed</td></tr>
+      <tr><td>6</td><td>Heritage Economy</td><td>Ministry of Culture + Ministry of Textiles (joint ODA)</td><td>DC Handlooms, Weavers Service Centres already exist; GI Registry already under Ministry of Commerce; tourism circuits under Ministry of Tourism</td></tr>
+      <tr><td>7</td><td>Accountability</td><td>Ministry of Law &amp; Justice + NITI Aayog (jointly)</td><td><em>Partial exception:</em> Parliament Effectiveness Index must remain with IDAA or an independent body — Law Ministry cannot audit its own legislative process. NITI Aayog co-owns this pillar.</td></tr>
+      <tr><td>8</td><td>Education</td><td>Ministry of Education + CBSE + NCERT</td><td>PM Shree is already a Ministry programme; UDISE+ data infrastructure exists; no new tracking system needed</td></tr>
+      <tr><td>9</td><td>Manufacturing</td><td>DPIIT + Ministry of Heavy Industry + Ministry of MSME</td><td>PLI schemes already operational; MSME cluster development under ministry; ISVL becomes a ministry-sponsored JV</td></tr>
+      <tr><td>10</td><td>Health</td><td>Ministry of Health + NHA + NHM</td><td>PM-JAY already at NHA; NHM has district-level field network; ABDM already under MoHFW; no coordination gap</td></tr>
+      <tr><td>11</td><td>Digital &amp; AI</td><td>MeitY + BharatNet + IndiaAI Mission</td><td>BharatNet, PM-WANI, IndiaAI Mission all already under MeitY; BSNL restructuring can support village facilitator programme</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Layer 3 — The Independent Digital Audit Authority (IDAA)</h3>
+  <p>This is the structural innovation that makes B4 different from "just NITI Aayog doing what it already does." Without an IDAA with genuine independence, real-time data, and consequences for failure, B4 is simply the Planning Commission with better branding. The IDAA is what converts government delivery into accountable delivery.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0;">
+    <div style="background:#FFF8EC; border-radius:8px; padding:18px 20px; border-top:3px solid #92400E;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#92400E; margin-bottom:8px;">What CAG does today</div>
+      <ul style="font-size:13px; color:#3A3A4A; line-height:1.8; padding-left:18px; margin:0;">
+        <li>Audits financial accounts (inputs and process)</li>
+        <li>Annual reports, tabled in Parliament</li>
+        <li>Backward-looking — examines what happened</li>
+        <li>Financial + compliance audit; limited outcome audit</li>
+        <li>No real-time dashboard</li>
+        <li>No consequence for CAG officials if findings go unacted</li>
+      </ul>
+    </div>
+    <div style="background:#F0FDF4; border-radius:8px; padding:18px 20px; border-top:3px solid #1B6B3A;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#1B6B3A; margin-bottom:8px;">What IDAA does differently</div>
+      <ul style="font-size:13px; color:#3A3A4A; line-height:1.8; padding-left:18px; margin:0;">
+        <li>Outcome audit — did the FPO actually produce income?</li>
+        <li>Real-time dashboards — every district, live, public</li>
+        <li>Forward-looking — tracks programme against quarterly milestones</li>
+        <li>Open API — data auto-publishes; government cannot suppress</li>
+        <li>10% random field verification annually (independent, not self-reported)</li>
+        <li>IDAA publishes its own accuracy rate — auditors have skin in the game too</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>Skin in the Game — Ministry Officials</h4>
+    <p>Outcome Delivery Agreements are public from Day 1 — signed by the Secretary of each ministry, published on the IDAA dashboard, traceable by any citizen. Senior officials at Joint Secretary level and above have 20% of their Variable Performance Pay linked to ODA outcome targets as verified by IDAA (not self-reported). Secretary-level empanelment panels explicitly incorporate IDAA outcome ratings for the programmes under each officer's tenure. This does not violate Article 311 — Variable Performance Pay and empanelment criteria are service rules, not punitive actions.</p>
+    <p>The IDAA itself has skin in the game: Commissioners publish an annual "audit accuracy report" tracking how many of their findings were validated by independent third parties or subsequent events. Commissioners serve fixed 6-year terms, removable only by a process mirroring Supreme Court judge removal — no government can silence them by transfer or termination.</p>
+  </div>
+
+  <div class="callout">
+    <h4>Three Routes to Constituting the IDAA</h4>
+    <p><strong>Route 1 — Enhanced CAG Mandate (fastest, 6 months):</strong> The CAG of India already has performance audit authority under Sections 14–16 of the CAG DPC Act 1971. A Presidential direction instructs CAG to establish a dedicated Digital Performance Audit Wing with real-time data access, public dashboards, and the outcome-audit methodology described above. No new legislation; uses existing constitutional framework. Trade-off: IDAA remains part of the CAG structure, which is already constitutionally independent — this is actually a strength, not a weakness.</p>
+    <p><strong>Route 2 — Separate Parliamentary Act (strongest, 3–5 years):</strong> IDAA is constituted as a distinct institution by Parliamentary Act, with its own enabling legislation, independent Commissioners appointed by a CJI-led committee, and a dedicated annual grant from the Consolidated Fund. This is the cleanest and most durable architecture but requires Parliamentary time and majority.</p>
+    <p><strong>Route 3 — NITI Aayog Digital Monitoring Wing (fastest, 3 months — weakest):</strong> NITI Aayog establishes an internal digital monitoring function that publishes programme dashboards. Fast and feasible, but NITI Aayog reports to the PM — it cannot be genuinely independent of the government it is monitoring. Use this only as a bridge to Routes 1 or 2.</p>
+    <p><strong>Recommendation:</strong> Start with Route 3 (immediate dashboard launch), activate Route 1 (CAG wing) within 6 months, pursue Route 2 in the next Parliamentary session. The three routes overlap and strengthen each other.</p>
+  </div>
+
+  <h3>Layer 4 — The B4 Financing Stack</h3>
+  <p>B4's financing model is its most distinctive feature. Rather than building a private equity corpus, it mobilises capital through four new public instruments — each using existing SEBI and RBI regulatory frameworks, requiring no new legislation beyond enabling notifications.</p>
+
+  <h3>Instrument 1 — Outcome-Linked Transformation Bonds</h3>
+  <div class="layer gold">
+    <h5>Structure</h5>
+    <p>Bonds issued by a Sarvodaya Transformation Finance Trust (TFT) — a public charitable trust constituted under the Indian Trusts Act, separately from NITI Aayog, independently governed. TFT receives proceeds and deploys against signed ministry ODAs. Coupon rate is variable — linked to IDAA-verified outcome performance: base 6% + 0.5% bonus if IDAA certifies more than 80% of annual targets met; base 6% − 0.5% if fewer than 50% of targets met (capped floor; investors know minimum return). SEBI registration as Social Impact Infrastructure Bonds. BSE/NSE listed. Minimum investment ₹10,000 — accessible to retail investors.</p>
+  </div>
+  <div class="layer gold">
+    <h5>Why This Changes Government Behaviour</h5>
+    <p>When ₹50,000 crore of retail investors' money is sitting in bonds whose coupon depends on IDAA-verified outcomes, the ministry Secretary knows that underperformance has a direct, public, financial consequence — not just a dashboard entry. Bondholders are a constituency. A ministry that causes the coupon to drop from 6.5% to 5.5% will hear about it in Parliament from the constituencies where those retail investors live. This is a private capital pressure mechanism that has never been applied to Indian government programme delivery at this scale.</p>
+  </div>
+
+  <h3>Instrument 2 — Infrastructure REIT and InvIT Listings</h3>
+  <p>India's government holds ₹5–10 lakh crore of underutilised or under-monetised infrastructure assets. B4 converts portions of these into listed instruments — generating capital for transformation programmes while giving citizens direct ownership stakes in national infrastructure.</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:22%;">Instrument</th><th style="width:25%;">Asset Base</th><th style="width:28%;">Revenue Model</th><th style="width:25%;">Capital Potential</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Railway Station REIT</strong><br><span style="font-size:11px; color:var(--ash);">(RSD-REIT)</span></td>
+        <td>Commercial development rights over 500 major station precincts (land already owned by Railways). Retail, hospitality, offices, co-working on station land.</td>
+        <td>Long-term lease income from developers; revenue sharing from station commercial operations. Railways retains operational land; commercial development rights leased to REIT.</td>
+        <td>₹40,000–80,000 crore listed capital. Annual distribution to unit holders from lease income. Capital deployed to station upgrades and signalling.</td>
+      </tr>
+      <tr>
+        <td><strong>Agri Logistics InvIT</strong><br><span style="font-size:11px; color:var(--ash);">(ALI-InvIT)</span></td>
+        <td>FCI warehouses (2,400 locations), cold storage infrastructure built under NTC Agri programme, rural godown network.</td>
+        <td>Warehouse rental to FPOs, private traders, e-commerce; cold storage charges; long-term storage contracts with FCI. Revenue covers O&amp;M + distribution to unit holders.</td>
+        <td>₹15,000–25,000 crore listed capital. FPOs become both users and potential unit holders — aligning farmer interests with infrastructure performance.</td>
+      </tr>
+      <tr>
+        <td><strong>Healthcare InvIT</strong><br><span style="font-size:11px; color:var(--ash);">(H-InvIT)</span></td>
+        <td>Government hospital buildings and medical college campuses. Existing infrastructure leased to the InvIT; upgraded and managed under PPP.</td>
+        <td>Premium ward and private room revenues cross-subsidise free/subsidised PM-JAY beds. Pharmacy income, diagnostics, medical education fees. IDAA monitors free bed utilisation to prevent mission drift.</td>
+        <td>₹20,000–35,000 crore listed capital. Precedent: Narayana Health model demonstrates cross-subsidy viability at scale.</td>
+      </tr>
+      <tr>
+        <td><strong>Port &amp; Coastal InvIT</strong><br><span style="font-size:11px; color:var(--ash);">(PC-InvIT)</span></td>
+        <td>Berth capacity, warehousing, and logistics zone land at 13 major ports. Port Trust land significantly underutilised — development rights can be monetised without transferring port operations.</td>
+        <td>Container handling fees, warehousing rental, logistics zone leases. Port operations remain with Port Trust; commercial real estate and logistics zones in InvIT.</td>
+        <td>₹25,000–40,000 crore listed capital. Sagarmala co-investment from listed capital reduces burden on Union Budget.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>The REIT/InvIT Governance Rule</h4>
+    <p>Every REIT and InvIT listed under the B4 framework is required to have IDAA as a reporting authority — not just SEBI. IDAA publishes quarterly performance data on each listed instrument: utilisation rates, outcome metrics (beds filled per hospital InvIT, tonnes through per cold storage InvIT), and comparison against the ODA target. This closes the information asymmetry that typically prevents retail investors from evaluating infrastructure investments. Retail investor and IDAA interest are aligned: both want the underlying asset to perform.</p>
+  </div>
+
+  <h3>Instrument 3 — Citizen and Diaspora Transformation Bonds</h3>
+  <div class="layer blue">
+    <h5>Citizen Transformation Bonds</h5>
+    <p>₹1,000 minimum. 7% tax-free (matching the best tax-free infrastructure bonds India has issued). Listed on BSE/NSE. EPFO and NPS eligible — pension fund inflows create institutional demand. Proceeds go to the TFT for ODA deployment. IDAA-verified outcomes published quarterly. A citizen who buys ₹10,000 in Citizen Transformation Bonds can track exactly which FPO network or school upgrade their capital helped fund — because the TFT publishes programme-level allocation and IDAA publishes programme-level outcomes. This is direct participatory investment in national transformation, not an abstract government promise.</p>
+  </div>
+  <div class="layer blue">
+    <h5>Diaspora Transformation Bonds</h5>
+    <p>Rupee-denominated bonds available to NRI investors on international exchanges (GIFT City, London, Singapore). Precedent: RBI's 1998 Resurgent India Bonds raised $4.2 billion in 7 weeks. India's 32 million-strong diaspora has an aggregate investable surplus of hundreds of billions of dollars — and a strong cultural motivation to participate in India's transformation if given a credible, transparent vehicle. IDAA-linked outcomes and quarterly reporting are the governance quality that institutional NRI investors require. Estimated potential: ₹30,000–50,000 crore over 5 years.</p>
+  </div>
+
+  <h3>The B4 Financial Stack — Summary</h3>
+  <table>
+    <thead><tr><th>Instrument</th><th>Estimated Capital (5-yr)</th><th>Investor</th><th>Legal Basis</th><th>Dependency</th></tr></thead>
+    <tbody>
+      <tr><td>Sarvodaya Transformation Fund (annual budget)</td><td>₹75,000–1,00,000 cr</td><td>Government (Consolidated Fund)</td><td>Annual Appropriation Act</td><td>Parliament — but as a Budget line, not a new Act</td></tr>
+      <tr><td>Outcome-Linked Transformation Bonds</td><td>₹30,000–50,000 cr</td><td>Retail, corporates, institutional</td><td>SEBI Social Impact Bond framework</td><td>SEBI notification; TFT trust registration</td></tr>
+      <tr><td>Railway Station REIT</td><td>₹40,000–80,000 cr</td><td>Retail, FII, institutional</td><td>SEBI REIT Regulations 2014</td><td>Railway Board development rights notification</td></tr>
+      <tr><td>Agri Logistics InvIT</td><td>₹15,000–25,000 cr</td><td>Retail, FPO cooperatives, institutional</td><td>SEBI InvIT Regulations 2014</td><td>FCI asset notification; MoA approval</td></tr>
+      <tr><td>Healthcare InvIT</td><td>₹20,000–35,000 cr</td><td>Retail, insurance, institutional</td><td>SEBI InvIT Regulations 2014</td><td>MoHFW PPP framework notification</td></tr>
+      <tr><td>Port &amp; Coastal InvIT</td><td>₹25,000–40,000 cr</td><td>FII, institutional, retail</td><td>SEBI InvIT Regulations 2014</td><td>Port Trust Act amendment or Cabinet order</td></tr>
+      <tr><td>Citizen Transformation Bonds (tax-free)</td><td>₹20,000–30,000 cr</td><td>Retail, EPFO, NPS</td><td>RBI / Finance Ministry notification</td><td>Finance Ministry tax-free bond notification</td></tr>
+      <tr><td>Diaspora Bonds</td><td>₹30,000–50,000 cr</td><td>NRI investors globally</td><td>FEMA / RBI / GIFT City framework</td><td>RBI master direction; GIFT City listing</td></tr>
+      <tr><td><strong>Total 5-Year Stack</strong></td><td><strong>₹2.5–4.8 lakh crore</strong></td><td colspan="3">This is 4–8× the NTC private corpus — but deployed through government machinery with IDAA accountability</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B4 RACI — How Accountability Works in the Government-Led Hybrid</h3>
+  <table>
+    <thead>
+      <tr><th style="width:22%;">Task Category</th><th>NITI Aayog</th><th>Line Ministry</th><th>IDAA</th><th>TFT</th><th>Parliament</th><th>Citizens / Investors</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>ODA drafting &amp; signing</strong></td><td><span class="tag-a">A</span> finalises</td><td><span class="tag-r">R</span> drafts; signs</td><td><span class="tag-c">C</span> sets measurable KPIs</td><td><span class="tag-c">C</span> financing feasibility</td><td><span class="tag-i">I</span> receives copy</td><td><span class="tag-i">I</span> public on Day 1</td></tr>
+      <tr><td><strong>Programme execution</strong></td><td><span class="tag-a">A</span> cross-pillar</td><td><span class="tag-r">R</span> owns execution</td><td><span class="tag-i">I</span> monitors only</td><td><span class="tag-r">R</span> deploys capital</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Outcome measurement</strong></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A/R</span> independent</td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> receives</td><td><span class="tag-a">A</span> right to see live</td></tr>
+      <tr><td><strong>Dashboard publication</strong></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A/R</span> auto-publishes</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> primary audience</td></tr>
+      <tr><td><strong>Bond coupon determination</strong></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A/R</span> certifies outcome</td><td><span class="tag-r">R</span> pays coupon</td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> receive payment</td></tr>
+      <tr><td><strong>REIT/InvIT performance</strong></td><td><span class="tag-i">I</span></td><td><span class="tag-r">R</span> asset owner</td><td><span class="tag-a">A/R</span> publishes metrics</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-a">A</span> unit holders</td></tr>
+      <tr><td><strong>Ministry VPP determination</strong></td><td><span class="tag-a">A</span></td><td><span class="tag-r">R</span> receives</td><td><span class="tag-r">R</span> provides IDAA rating</td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td><td><span class="tag-i">I</span></td></tr>
+      <tr><td><strong>Annual Parliamentary report</strong></td><td><span class="tag-r">R</span> prepares</td><td><span class="tag-r">R</span> contributes data</td><td><span class="tag-r">R</span> independent audit report</td><td><span class="tag-r">R</span> TFT accounts</td><td><span class="tag-a">A</span> receives all three</td><td><span class="tag-i">I</span> public</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B4 Task Register — What Changes from Section VII</h3>
+  <p>All 67 tasks in the Section VII task register remain applicable under B4. What changes is the institutional executor — the NTC sub-body is replaced by the relevant ministry, and the role tags shift in specific ways:</p>
+
+  <table>
+    <thead><tr><th style="width:8%;">Role Tag</th><th style="width:30%;">Under Plan A (Statutory NTC)</th><th style="width:30%;">Under B4 (NITI + Ministry + IDAA)</th><th style="width:32%;">Net Change</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-execute">EXECUTE</span></td><td>NTC sub-body runs the programme end-to-end</td><td>Line ministry runs the programme; NITI Aayog holds ODA; TFT provides capital</td><td>No gap — ministries have greater field reach than NTC sub-bodies would initially</td></tr>
+      <tr><td><span class="pill p-fund">FUND</span></td><td>NTC corpus (₹5 lakh Cr private equity)</td><td>Transformation Fund (Budget) + TFT (bonds) + REIT/InvIT capital</td><td>Larger total capital pool; but requires annual Parliamentary Budget approval</td></tr>
+      <tr><td><span class="pill p-monitor">MONITOR</span></td><td>NTC Apex + sub-body outcomes team</td><td>IDAA — entirely independent; real-time; publicly published</td><td>Stronger independence than NTC self-monitoring; IDAA cannot be directed by programme executor</td></tr>
+      <tr><td><span class="pill p-policy">POLICY</span></td><td>NTC advocates; government decides</td><td>Ministry proposes; Cabinet decides; NITI Aayog coordinates</td><td>No gap — policy role is unchanged; in fact ministry is closer to the decision</td></tr>
+      <tr><td><span class="pill p-partner">PARTNER</span></td><td>NTC partners with ministry for asset-heavy tasks</td><td>Asset ownership conflict disappears — ministry IS the asset owner</td><td>Stronger — no partnership friction on railway assets, port land, hospital buildings</td></tr>
+      <tr><td><span class="pill p-blueprint">BLUEPRINT</span></td><td>NTC designs implementation architecture</td><td>NITI Aayog + lateral hires design; ministry validates; IDAA reviews measurability</td><td>Comparable quality if lateral hire talent is strong</td></tr>
+      <tr><td><span class="pill p-catalyst">CATALYST</span></td><td>NTC creates conditions for others to act</td><td>NITI Aayog plays catalyst through ODA incentive design and TFT capital deployment</td><td>Comparable — catalyst role does not require private institutional form</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Honest Assessment — Where B4 Is Weaker</h3>
+  <div class="warn">
+    <h4>Three Genuine Risks in the Government-Led Hybrid</h4>
+    <p><strong>1. Ministerial override.</strong> Every line ministry has a political minister who can redirect priorities, transfer inconvenient officers, and quietly deprioritise ODA targets that conflict with electoral interests. NITI Aayog, which reports to the same PM who heads the Cabinet, cannot structurally override a determined Minister. The IDAA can expose this publicly — but public exposure is a slower corrective than structural independence. Mitigation: the outcome-linked bonds create a financial constituency that puts real pressure on ministerial accountability. Unit holders and bondholders are voters too.</p>
+    <p><strong>2. IDAA capture risk.</strong> Route 1 (enhanced CAG) is constitutionally independent. Routes 2 and 3 depend on government commitment. If IDAA Commissioners are appointed through a politically influenced process, or if IDAA's digital infrastructure is controlled by NIC (a government body), the monitoring body can be gradually captured. The CAG route is therefore not just fastest — it is structurally the most resilient.</p>
+    <p><strong>3. Electoral cycle discontinuity.</strong> Every five years a new government may reprioritise which ministries are in the transformation portfolio, which REIT instruments are listed, and whether the TFT continues to receive Budget allocations. The private-sector NTC (Plan A or B1) is harder to unwind because 10 crore citizen shareholders and 1.5 crore FPO farmer-members are stakeholders who have personal financial stakes in continuation. Government-led B4 does not have this structural continuity protection. The diaspora bonds and citizen bonds partially compensate — but the core programme dependency on annual Budget approvals is a real vulnerability.</p>
+  </div>
+
+  <div class="verdict">
+    <h3>The Recommendation: B4 + B1 Running in Parallel</h3>
+    <p>B4 and B1 are not alternatives to choose between. They are <strong>complementary architectures that together cover each other's weaknesses.</strong></p>
+    <p>B4 is strongest where B1 is weakest: <strong>budget scale</strong> (government can deploy ₹4+ lakh crore vs NTC's ₹5 lakh crore corpus), <strong>statutory authority</strong> (ministries can gazette notifications, acquire land, mandate compliance — NTC cannot), and <strong>field reach</strong> (district-level government machinery in every one of India's 766 districts vs NTC building its own field presence over years).</p>
+    <p>B1 is strongest where B4 is weakest: <strong>independence from political cycles</strong> (NTC's structure does not reset with every election), <strong>long-term institutional memory</strong> (a 10-crore shareholder-owned institution is hard to dissolve regardless of who governs), and <strong>filling the gaps</strong> (wherever a ministry underperforms its ODA, NTC sub-bodies can step in — they are a parallel delivery channel, not a redundant one).</p>
+    <p><strong>The IDAA is the element both models share.</strong> Whether NTC is statutory (Plan A), Section 8 (B1), or government-led (B4), India needs an Independent Digital Audit Authority with real-time outcome dashboards, independently verified field data, and publicly published results. This is the one institutional innovation that should be pursued regardless of which NTC governance model is adopted.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>This document is the institutional design appendix to the Sarvodaya Bharat Vision Document 2026–2036 (v1.21). It provides the full technical architecture behind the National Transformation Cooperative — constitutional legitimacy, governance design, task taxonomy, RACI, financial model, organisation structure, alternative institutional models, and six open questions for government dialogue. It is a working document, intended to be updated as decisions are taken through the engagement process beginning in 2026.</p>
+</div>
+
+</div><!-- end .wrap -->
+</body>
+</html>
